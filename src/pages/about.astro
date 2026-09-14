@@ -1,0 +1,106 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import {
+  academicYear,
+  members,
+  teams,
+  memberById,
+  executiveDirector,
+} from "../data/content";
+const director = memberById(executiveDirector);
+---
+
+<BaseLayout
+  title="About"
+  description="Learn about Cyber Flyers, a student-led cybersecurity initiative at the University of Dayton, and its history and leadership."
+>
+  <PageHeader
+    title="About Cyber Flyers"
+    description="A student-led cybersecurity initiative at the University of Dayton."
+  />
+  <section class="section container split">
+    <div>
+      <h2>Our mission</h2>
+      <p>
+        Cyber Flyers provides cybersecurity education, training, and outreach to
+        the student community at the University of Dayton. Students gain
+        experience through research, technical projects, and peer-to-peer
+        education.
+      </p>
+    </div>
+    <div>
+      <h2>University support</h2>
+      <p>
+        The initiative is a joint effort between the Center for Cybersecurity
+        and Data Intelligence (CCDI) and UDit, with student leadership and
+        advising from CCDI.
+      </p>
+      <a href="https://udayton.edu/centers/cybersecurity/initiatives.php#cyber-flyers">
+        Cyber Flyers at UD
+      </a>
+    </div>
+  </section>
+  <section class="section container">
+    <h2>History</h2>
+    <ol class="timeline">
+      <li>
+        <span>Fall 2024</span>
+        <p>
+          Cyber Flyers began at CCDI with six students and a focus on
+          peer-to-peer cybersecurity education.
+        </p>
+      </li>
+      <li>
+        <span>2025–2026</span>
+        <p>
+          The team grew to 14 students, organizing its work around specialized
+          teams and student directors.
+        </p>
+      </li>
+      <li>
+        <span>{academicYear}</span>
+        <p>
+          {members.length} students contribute to communication, phishing
+          training, and threat research across {teams.length} teams.
+        </p>
+      </li>
+    </ol>
+    <a href="/impact/">Past activities and reports</a>
+  </section>
+  <section class="section container">
+    <h2>Leadership</h2>
+    <p>Academic year {academicYear}</p>
+    <div class="leadership-grid">
+      <article class="leader">
+        <p class="eyebrow">Executive Director</p>
+        <h3>{director.name}</h3>
+        <p>
+          {director.standing} · {director.majors}
+        </p>
+      </article>
+      {teams.map((team) => {
+        const person = memberById(team.director);
+        return (
+          <article class="leader">
+            <p class="eyebrow">{team.acronym} Director</p>
+            <h3>{person.name}</h3>
+            <p>
+              {person.standing} · {person.majors}
+            </p>
+            <a href={`/teams/#${team.id}`}>{team.acronym} members</a>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+  <section class="section container">
+    <h2>Texas Cyber Range partnership</h2>
+    <p class="prose">
+      Cyber Flyers partners with the Texas Cyber Range at Texas A&amp;M to share
+      the results of student-led cybersecurity initiatives. TxCR also hosts the
+      Cyber Flyers blog.
+    </p>
+    <a href="https://cf.therangerpost.com/">Cyber Flyers blog</a>
+  </section>
+</BaseLayout>

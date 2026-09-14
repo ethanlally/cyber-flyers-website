@@ -1,0 +1,38 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { resourceGroups } from "../data/content";
+---
+
+<BaseLayout
+  title="Resources"
+  description="Cyber Flyers articles, cybermindfulness learning material, and cybersecurity reference guides from the University of Dayton and NIST."
+>
+  <PageHeader
+    title="Resources"
+    description="Articles, learning material, and reference guides. These links open resources hosted outside this website; our blog remains hosted by the Texas Cyber Range."
+  />
+  {resourceGroups.map((group) => (
+    <section
+      class="section container resource-section"
+      id={group.id}
+      aria-labelledby={`${group.id}-title`}
+    >
+      <div class="resource-intro">
+        <h2 id={`${group.id}-title`}>{group.title}</h2>
+        <p>{group.description}</p>
+      </div>
+      <div class="resource-list">
+        {group.items.map((item) => (
+          <article class="resource-item">
+            <p class="eyebrow">{item.label}</p>
+            <h3>
+              <a href={item.url}>{item.title}</a>
+            </h3>
+            <p>{item.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  ))}
+</BaseLayout>

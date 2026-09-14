@@ -1,0 +1,18 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+---
+
+<BaseLayout
+  title="Page Not Found"
+  description="This page could not be found. Return to Cyber Flyers to explore our teams, programs, and resources."
+>
+  <PageHeader
+    eyebrow="404"
+    title="Page not found"
+    description="The page you're looking for may have moved, or the address may be incorrect."
+  />
+  <div class="container section">
+    <a href="/">Back to Cyber Flyers</a>
+  </div>
+</BaseLayout>

@@ -1,0 +1,70 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { academicYear, members, teams } from "../data/content";
+const highlights = [
+  {
+    title: "Campus tabling",
+    description:
+      "Tabling at Up the Orgs and in Kennedy Union created opportunities to talk with students about cybersecurity and introduce the team’s work.",
+  },
+  {
+    title: "Guest speakers",
+    description:
+      "Guest speakers brought perspectives from industry to campus, connecting student questions with professional experience.",
+  },
+  {
+    title: "Training and simulations",
+    description:
+      "The team developed cybersecurity training modules for UDit and ran phishing simulations as part of its education work.",
+  },
+  {
+    title: "Articles and podcast",
+    description:
+      "Cyber Flyers published blog articles and partnered with the Hanley Sustainability Institute on a podcast exploring the implications of AI.",
+  },
+];
+---
+
+<BaseLayout
+  title="Impact & Reports"
+  description="Cyber Flyers activities from 2025–2026 and information about the current 2026–2027 team."
+>
+  <PageHeader
+    title="Impact & reports"
+    description="Past activities and annual reports, organized by academic year."
+  />
+  <section class="section container">
+    <h2>{academicYear}</h2>
+    <p>
+      The current roster includes {members.length} students across{" "}
+      {teams.length} teams. Activities and results will be added as the year
+      progresses.
+    </p>
+    <div class="actions">
+      <a href="/teams/">Current team</a>
+      <a href="/programs/">Programs and research priorities</a>
+    </div>
+  </section>
+  <section class="section container">
+    <h2>2025–2026 highlights</h2>
+    <p>
+      These activities are drawn from the Cyber Flyers 2025–2026 Annual Report.
+    </p>
+    <div class="highlight-grid">
+      {highlights.map((highlight) => (
+        <article>
+          <h3>{highlight.title}</h3>
+          <p>{highlight.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="section container">
+    <h2>Annual reports</h2>
+    <div class="report-entry">
+      <h3>2025–2026 Cyber Flyers Annual Report</h3>
+      <p class="status-note">Report download coming soon.</p>
+    </div>
+  </section>
+</BaseLayout>

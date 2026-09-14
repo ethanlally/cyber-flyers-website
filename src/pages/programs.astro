@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { academicYear, programs, teams } from "../data/content";
+---
+
+<BaseLayout
+  title="Programs & Research"
+  description="Cyber Flyers priorities in cybersecurity training, phishing education, campus outreach, and threat research for 2026–2027."
+>
+  <PageHeader
+    eyebrow={`Academic year ${academicYear}`}
+    title="Programs & research"
+    description="The following projects guide the teams' work this academic year."
+  >
+    <nav class="anchor-nav" aria-label="Jump to program">
+      {programs.map((program) => (
+        <a href={`#${program.id}`}>{program.name}</a>
+      ))}
+    </nav>
+  </PageHeader>
+  {programs.map((program) => (
+    <section
+      class="section container split"
+      id={program.id}
+      aria-labelledby={`${program.id}-title`}
+    >
+      <div>
+        <h2 id={`${program.id}-title`}>{program.name}</h2>
+        <p>{program.description}</p>
+        <div class="team-tags">
+          <span>Teams:</span>
+          {program.teamIds.map((id) => (
+            <a href={`/teams/#${id}`}>
+              {teams.find((team) => team.id === id)!.acronym}
+            </a>
+          ))}
+        </div>
+      </div>
+      <div class="program-detail">
+        <h3>Areas of focus</h3>
+        <ul>
+          {program.focus.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+        <a href={program.resource}>{program.resourceLabel}</a>
+      </div>
+    </section>
+  ))}
+</BaseLayout>
