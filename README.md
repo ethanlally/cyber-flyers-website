@@ -1,6 +1,6 @@
 # Cyber Flyers Website
 
-Local Astro scaffold for the Cyber Flyers website.
+Astro website for Cyber Flyers at the University of Dayton.
 
 ## Prerequisites
 
@@ -55,6 +55,18 @@ npm run preview
 ```
 
 Open <http://localhost:4321> and press `Ctrl+C` when finished.
+
+## Automated builds (GitHub Actions)
+
+The workflow in `.github/workflows/build.yml` runs on pushes to `main`, pull requests targeting `main`, and manual runs. It uses Node.js 22, installs the locked dependencies with `npm ci`, and runs `npm run build`.
+
+After a successful run, the generated `dist/` files are saved as a downloadable artifact named `website-dist` for 14 days. Open the repository's **Actions** tab, select **Build website**, open a successful run, and download `website-dist` from the **Artifacts** section.
+
+To start a manual build, select **Actions → Build website → Run workflow**. The workflow must first be committed and pushed to the default branch for the manual option to appear.
+
+The build checks compilation; there is currently no automated test suite.
+
+The workflow uses GitHub's official [checkout](https://github.com/actions/checkout), [setup-node](https://github.com/actions/setup-node), and [upload-artifact](https://github.com/actions/upload-artifact) actions.
 
 ## Command reference
 

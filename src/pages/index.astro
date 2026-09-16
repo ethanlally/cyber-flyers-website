@@ -1,9 +1,76 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { academicYear, members, teams, programs } from "../data/content";
 ---
 
 <BaseLayout title="Cyber Flyers">
-	<main>
-		<h1>Hello, world!</h1>
-	</main>
+  <header class="home-intro">
+    <div class="container">
+      <div>
+        <h1>Cyber Flyers</h1>
+        <p class="tagline">Empowering students for a cyber-secure community.</p>
+      </div>
+      <div class="home-description">
+        <p>
+          Cyber Flyers is a student-led organization at the University of
+          Dayton. We provide cybersecurity education, training, and outreach
+          with support from the Center for Cybersecurity and Data Intelligence
+          (CCDI) and UDit.
+        </p>
+        <p class="year-note">
+          Academic year {academicYear} · {members.length} students ·{" "}
+          {teams.length} teams
+        </p>
+        <a href="/about/">About Cyber Flyers</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section container" aria-labelledby="teams-title">
+    <h2 id="teams-title">Our teams</h2>
+    <div class="team-overview">
+      {teams.map((team) => (
+        <article>
+          <p class="eyebrow">{team.acronym}</p>
+          <h3>
+            <a href={`/teams/#${team.id}`}>{team.name}</a>
+          </h3>
+          <p>{team.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container" aria-labelledby="work-title">
+    <h2 id="work-title">Current work</h2>
+    <div class="work-list">
+      {programs.map((program) => (
+        <article class="work-row">
+          <h3>
+            <a href={`/programs/#${program.id}`}>{program.name}</a>
+          </h3>
+          <p>{program.summary}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section container split" aria-label="Articles and reports">
+    <div>
+      <h2>Articles</h2>
+      <p>
+        Read articles by Cyber Flyers members on the blog hosted by the Texas
+        Cyber Range.
+      </p>
+      <a href="https://cf.therangerpost.com/">Cyber Flyers blog</a>
+    </div>
+    <div>
+      <h2>2025–2026 highlights</h2>
+      <p>
+        Last year's activities included campus tabling, guest speakers, phishing
+        simulations, and training material for UDit.
+      </p>
+      <a href="/impact/">Impact and reports</a>
+    </div>
+  </section>
 </BaseLayout>

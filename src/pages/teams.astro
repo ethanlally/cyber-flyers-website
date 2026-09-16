@@ -1,0 +1,107 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import {
+  academicYear,
+  teams,
+  programs,
+  memberById,
+  executiveDirector,
+} from "../data/content";
+const executive = memberById(executiveDirector);
+---
+
+<BaseLayout
+  title="Our Teams"
+  description="Meet the 2026–2027 Cyber Flyers leadership and the students behind CMAC, PSAT, and CTMR."
+>
+  <PageHeader
+    eyebrow={`Academic year ${academicYear}`}
+    title="Our teams"
+    description="Team responsibilities and the current student roster. Some members contribute to more than one team."
+  >
+    <nav class="anchor-nav" aria-label="Jump to team">
+      {teams.map((team) => (
+        <a href={`#${team.id}`}>{team.acronym}</a>
+      ))}
+    </nav>
+  </PageHeader>
+  <div class="container executive-bar">
+    <span class="eyebrow">Executive Director</span>
+    <strong>{executive.name}</strong>
+    <span>
+      {executive.standing} · {executive.majors}
+    </span>
+    <a href="/about/">About our leadership</a>
+  </div>
+  {teams.map((team) => {
+    const director = memberById(team.director);
+    const roster = [director, ...team.memberIds.map(memberById)];
+    return (
+      <section
+        id={team.id}
+        class="section container team-section"
+        aria-labelledby={`${team.id}-title`}
+      >
+        <div>
+          <div class="team-heading">
+            <div>
+              <p class="eyebrow">{team.acronym}</p>
+              <h2 id={`${team.id}-title`}>{team.name}</h2>
+              <p>{team.mission}</p>
+            </div>
+            <div class="team-priorities">
+              <h3>This year’s priorities</h3>
+              <ul>
+                {team.priorities.map((priority) => (
+                  <li>{priority}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div class="roster-heading">
+            <h3>Members</h3>
+            <span class="small">
+              AY {academicYear} · {roster.length} students
+            </span>
+          </div>
+          <ul class="roster">
+            {roster.map((person) => (
+              <li
+                class:list={[
+                  "member",
+                  { "member-director": person.id === team.director },
+                ]}
+              >
+                <div>
+                  <h4>{person.name}</h4>
+                  <span>
+                    {person.standing} · {person.majors}
+                  </span>
+                </div>
+                <span class="role">
+                  {person.id === team.director ? "Director" : "Member"}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <div class="related-programs">
+            <div>
+              <h3>Related programs</h3>
+              <ul class="plain-list">
+                {team.programIds.map((id) => {
+                  const program = programs.find((p) => p.id === id)!;
+                  return (
+                    <li>
+                      <a href={`/programs/#${id}`}>{program.name}</a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  })}
+</BaseLayout>

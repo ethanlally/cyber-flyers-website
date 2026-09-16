@@ -1,22 +1,137 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
+import { academicYear } from "../data/content";
 
 interface Props {
-	title: string;
+  title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Student-led cybersecurity education, training, and outreach at the University of Dayton. Meet Cyber Flyers and explore our work.",
+} = Astro.props;
+const navigation = [
+  ["/", "Home"],
+  ["/about/", "About"],
+  ["/teams/", "Teams"],
+  ["/programs/", "Programs & Research"],
+  ["/impact/", "Impact & Reports"],
+  ["/resources/", "Resources"],
+  ["/get-involved/", "Get Involved"],
+];
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isCurrent = (path: string) =>
+  currentPath === (path.replace(/\/$/, "") || "/");
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#102c40" />
+    <link
+      rel="preload"
+      href="/fonts/work-sans-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="icon"
+      href="/images/cyber-flyers-favicon.png"
+      type="image/png"
+      sizes="64x64"
+    />
+    <title>{title === 'Cyber Flyers' ? 'Cyber Flyers | University of Dayton' : `${title} | Cyber Flyers`}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <div class="affiliation">
+      <div class="container affiliation-inner">
+        <span>University of Dayton</span>
+        <a href="https://udayton.edu/centers/cybersecurity/">CCDI</a>
+      </div>
+    </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="/" class="brand" aria-label="Cyber Flyers home">
+          <img
+            src="/images/cyber-flyers-logo.png"
+            width="1200"
+            height="600"
+            alt="Cyber Flyers"
+          />
+        </a>
+        <nav class="desktop-nav" aria-label="Main navigation">
+          {navigation.map(([href, label]) => (
+            <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+              {label}
+            </a>
+          ))}
+        </nav>
+        <details class="mobile-menu">
+          <summary>Menu</summary>
+          <nav aria-label="Mobile navigation">
+            {navigation.map(([href, label]) => (
+              <a
+                href={href}
+                aria-current={isCurrent(href) ? "page" : undefined}
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
+        </details>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="footer-brand" href="/">
+            Cyber Flyers
+          </a>
+          <p class="small">
+            A joint initiative of CCDI and UDit
+            <br />
+            University of Dayton · Dayton, Ohio
+          </p>
+        </div>
+        <div>
+          <h2>Explore</h2>
+          <a href="/teams/">Our teams</a>
+          <a href="/programs/">Programs & research</a>
+          <a href="/impact/">Impact & reports</a>
+        </div>
+        <div>
+          <h2>Connect</h2>
+          <a href="/get-involved/">Get involved</a>
+          <a href="https://cf.therangerpost.com/">Cyber Flyers blog</a>
+          <a href="https://udayton.edu/centers/cybersecurity/initiatives.php#cyber-flyers">
+            Cyber Flyers at UD
+          </a>
+        </div>
+      </div>
+      <div class="container footer-bottom">
+        <span>AY {academicYear} · Logo by Lexi Niemeyer, VGD & MKT ’27</span>
+        <a href="https://udayton.edu/compliance/privacy-terms/index.php">
+          University privacy & terms
+        </a>
+      </div>
+    </footer>
+  </body>
 </html>
