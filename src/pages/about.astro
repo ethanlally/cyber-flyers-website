@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import {
@@ -66,7 +67,7 @@ const director = memberById(executiveDirector);
         </p>
       </li>
     </ol>
-    <a href="/impact/">Past activities and reports</a>
+    <a href={sitePath("/impact/")}>Past activities and reports</a>
   </section>
   <section class="section container">
     <h2>Leadership</h2>
@@ -88,7 +89,7 @@ const director = memberById(executiveDirector);
             <p>
               {person.standing} · {person.majors}
             </p>
-            <a href={`/teams/#${team.id}`}>{team.acronym} members</a>
+            <a href={sitePath(`/teams/#${team.id}`)}>{team.acronym} members</a>
           </article>
         );
       })}

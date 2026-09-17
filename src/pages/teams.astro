@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import {
@@ -32,7 +33,7 @@ const executive = memberById(executiveDirector);
     <span>
       {executive.standing} · {executive.majors}
     </span>
-    <a href="/about/">About our leadership</a>
+    <a href={sitePath("/about/")}>About our leadership</a>
   </div>
   {teams.map((team) => {
     const director = memberById(team.director);
@@ -93,7 +94,7 @@ const executive = memberById(executiveDirector);
                   const program = programs.find((p) => p.id === id)!;
                   return (
                     <li>
-                      <a href={`/programs/#${id}`}>{program.name}</a>
+                      <a href={sitePath(`/programs/#${id}`)}>{program.name}</a>
                     </li>
                   );
                 })}

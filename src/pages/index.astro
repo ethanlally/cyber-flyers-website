@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { academicYear, members, teams, programs } from "../data/content";
 ---
@@ -21,7 +22,7 @@ import { academicYear, members, teams, programs } from "../data/content";
           Academic year {academicYear} · {members.length} students ·{" "}
           {teams.length} teams
         </p>
-        <a href="/about/">About Cyber Flyers</a>
+        <a href={sitePath("/about/")}>About Cyber Flyers</a>
       </div>
     </div>
   </header>
@@ -33,7 +34,7 @@ import { academicYear, members, teams, programs } from "../data/content";
         <article>
           <p class="eyebrow">{team.acronym}</p>
           <h3>
-            <a href={`/teams/#${team.id}`}>{team.name}</a>
+            <a href={sitePath(`/teams/#${team.id}`)}>{team.name}</a>
           </h3>
           <p>{team.summary}</p>
         </article>
@@ -47,7 +48,7 @@ import { academicYear, members, teams, programs } from "../data/content";
       {programs.map((program) => (
         <article class="work-row">
           <h3>
-            <a href={`/programs/#${program.id}`}>{program.name}</a>
+            <a href={sitePath(`/programs/#${program.id}`)}>{program.name}</a>
           </h3>
           <p>{program.summary}</p>
         </article>
@@ -70,7 +71,7 @@ import { academicYear, members, teams, programs } from "../data/content";
         Last year's activities included campus tabling, guest speakers, phishing
         simulations, and training material for UDit.
       </p>
-      <a href="/impact/">Impact and reports</a>
+      <a href={sitePath("/impact/")}>Impact and reports</a>
     </div>
   </section>
 </BaseLayout>

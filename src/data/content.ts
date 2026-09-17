@@ -1,4 +1,3 @@
-// Public content for AY 2026-2027, based on the supplied project overview.
 // Keep each person here once; teams refer to these records by ID.
 export const academicYear = "2026-2027";
 type Standing = "Sophomore" | "Junior" | "Senior";

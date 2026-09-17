@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import "../styles/global.css";
 import { academicYear } from "../data/content";
 
@@ -22,7 +23,7 @@ const navigation = [
 ];
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isCurrent = (path: string) =>
-  currentPath === (path.replace(/\/$/, "") || "/");
+  currentPath === (sitePath(path).replace(/\/$/, "") || "/");
 ---
 
 <!doctype html>
@@ -34,21 +35,21 @@ const isCurrent = (path: string) =>
     <meta name="theme-color" content="#102c40" />
     <link
       rel="preload"
-      href="/fonts/work-sans-latin-wght-normal.woff2"
+      href={sitePath("/fonts/work-sans-latin-wght-normal.woff2")}
       as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="preload"
-      href="/fonts/source-serif-4-latin-wght-normal.woff2"
+      href={sitePath("/fonts/source-serif-4-latin-wght-normal.woff2")}
       as="font"
       type="font/woff2"
       crossorigin
     />
     <link
       rel="icon"
-      href="/images/cyber-flyers-favicon.png"
+      href={sitePath("/images/cyber-flyers-favicon.png")}
       type="image/png"
       sizes="64x64"
     />
@@ -66,9 +67,9 @@ const isCurrent = (path: string) =>
     </div>
     <header class="site-header">
       <div class="container header-inner">
-        <a href="/" class="brand" aria-label="Cyber Flyers home">
+        <a href={sitePath("/")} class="brand" aria-label="Cyber Flyers home">
           <img
-            src="/images/cyber-flyers-logo.png"
+            src={sitePath("/images/cyber-flyers-logo.png")}
             width="1200"
             height="600"
             alt="Cyber Flyers"
@@ -76,7 +77,10 @@ const isCurrent = (path: string) =>
         </a>
         <nav class="desktop-nav" aria-label="Main navigation">
           {navigation.map(([href, label]) => (
-            <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+            <a
+              href={sitePath(href)}
+              aria-current={isCurrent(href) ? "page" : undefined}
+            >
               {label}
             </a>
           ))}
@@ -86,7 +90,7 @@ const isCurrent = (path: string) =>
           <nav aria-label="Mobile navigation">
             {navigation.map(([href, label]) => (
               <a
-                href={href}
+                href={sitePath(href)}
                 aria-current={isCurrent(href) ? "page" : undefined}
               >
                 {label}
@@ -102,7 +106,7 @@ const isCurrent = (path: string) =>
     <footer class="site-footer">
       <div class="container footer-grid">
         <div>
-          <a class="footer-brand" href="/">
+          <a class="footer-brand" href={sitePath("/")}>
             Cyber Flyers
           </a>
           <p class="small">
@@ -113,13 +117,13 @@ const isCurrent = (path: string) =>
         </div>
         <div>
           <h2>Explore</h2>
-          <a href="/teams/">Our teams</a>
-          <a href="/programs/">Programs & research</a>
-          <a href="/impact/">Impact & reports</a>
+          <a href={sitePath("/teams/")}>Our teams</a>
+          <a href={sitePath("/programs/")}>Programs & research</a>
+          <a href={sitePath("/impact/")}>Impact & reports</a>
         </div>
         <div>
           <h2>Connect</h2>
-          <a href="/get-involved/">Get involved</a>
+          <a href={sitePath("/get-involved/")}>Get involved</a>
           <a href="https://cf.therangerpost.com/">Cyber Flyers blog</a>
           <a href="https://udayton.edu/centers/cybersecurity/initiatives.php#cyber-flyers">
             Cyber Flyers at UD

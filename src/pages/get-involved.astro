@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 ---
@@ -25,16 +26,16 @@ import PageHeader from "../components/PageHeader.astro";
       <h3>Team responsibilities</h3>
       <ul>
         <li>
-          <a href="/teams/#cmac">CMAC</a>: social media, educational campaigns,
-          campus outreach, and events.
+          <a href={sitePath("/teams/#cmac")}>CMAC</a>: social media, educational
+          campaigns, campus outreach, and events.
         </li>
         <li>
-          <a href="/teams/#psat">PSAT</a>: phishing simulations, training, and
-          cybermindfulness research.
+          <a href={sitePath("/teams/#psat")}>PSAT</a>: phishing simulations,
+          training, and cybermindfulness research.
         </li>
         <li>
-          <a href="/teams/#ctmr">CTMR</a>: threat research, educational
-          articles, and training material.
+          <a href={sitePath("/teams/#ctmr")}>CTMR</a>: threat research,
+          educational articles, and training material.
         </li>
       </ul>
     </div>

@@ -1,5 +1,9 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { env } from "node:process";
+import { defineConfig } from "astro/config";
 
-// https://astro.build/config
-export default defineConfig({});
+export default defineConfig({
+  site: env.ASTRO_SITE || undefined,
+  base: env.ASTRO_BASE || "/",
+  trailingSlash: "always",
+});

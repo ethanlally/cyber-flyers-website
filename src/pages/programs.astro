@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { academicYear, programs, teams } from "../data/content";
@@ -31,7 +32,7 @@ import { academicYear, programs, teams } from "../data/content";
         <div class="team-tags">
           <span>Teams:</span>
           {program.teamIds.map((id) => (
-            <a href={`/teams/#${id}`}>
+            <a href={sitePath(`/teams/#${id}`)}>
               {teams.find((team) => team.id === id)!.acronym}
             </a>
           ))}
@@ -44,7 +45,7 @@ import { academicYear, programs, teams } from "../data/content";
             <li>{item}</li>
           ))}
         </ul>
-        <a href={program.resource}>{program.resourceLabel}</a>
+        <a href={sitePath(program.resource)}>{program.resourceLabel}</a>
       </div>
     </section>
   ))}

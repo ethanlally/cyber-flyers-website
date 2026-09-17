@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { academicYear, members, teams } from "../data/content";
@@ -42,8 +43,8 @@ const highlights = [
       progresses.
     </p>
     <div class="actions">
-      <a href="/teams/">Current team</a>
-      <a href="/programs/">Programs and research priorities</a>
+      <a href={sitePath("/teams/")}>Current team</a>
+      <a href={sitePath("/programs/")}>Programs and research priorities</a>
     </div>
   </section>
   <section class="section container">
