@@ -1,4 +1,5 @@
 ---
+import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { resourceGroups } from "../data/content";
@@ -27,7 +28,7 @@ import { resourceGroups } from "../data/content";
           <article class="resource-item">
             <p class="eyebrow">{item.label}</p>
             <h3>
-              <a href={item.url}>{item.title}</a>
+              <a href={sitePath(item.url)}>{item.title}</a>
             </h3>
             <p>{item.description}</p>
           </article>

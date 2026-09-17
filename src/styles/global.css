@@ -1,4 +1,4 @@
-/* Keep the Cyber Flyers palette; typography and spacing adapt the editorial reference. */
+/* Theme */
 @font-face {
   font-family: "Work Sans";
   src: url("/fonts/work-sans-latin-wght-normal.woff2") format("woff2");
@@ -147,7 +147,7 @@ strong {
   top: 1rem;
 }
 
-/* Shared shell: keep the original mark on a light surface. */
+/* Header */
 .affiliation {
   background: var(--navy);
   color: #e3ecec;
@@ -203,7 +203,7 @@ strong {
   display: none;
 }
 
-/* Two-column introduction, without an oversized display slogan. */
+/* Introduction */
 .home-intro {
   padding-block: clamp(2.5rem, 5vw, 4rem);
   background: var(--navy);
@@ -281,7 +281,7 @@ strong {
   margin-bottom: 0;
 }
 
-/* Editorial lists use shared baselines and rules instead of card containers. */
+/* Lists */
 .team-overview {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -394,7 +394,7 @@ strong {
   font-size: 0.875rem;
 }
 
-/* Roster text stays sans serif and compact for quick scanning. */
+/* Roster */
 .executive-bar {
   display: flex;
   gap: 0.5rem 1.5rem;
@@ -490,7 +490,7 @@ strong {
   padding: 0;
 }
 
-/* Resource headings form a small index beside the linked reading list. */
+/* Resources */
 .resource-section {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
@@ -547,7 +547,7 @@ strong {
   max-width: 36rem;
 }
 
-/* Footer retains the original navy identity and straightforward navigation. */
+/* Footer */
 .site-footer {
   background: var(--navy);
   color: #d7e3e5;
