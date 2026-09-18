@@ -1,0 +1,99 @@
+---
+import { sitePath } from "../utils/paths";
+import { teams } from "../data/content";
+const interests = [
+  { label: "Creating & connecting", icon: "↗", team: "cmac" },
+  { label: "Hands-on security", icon: "⌘", team: "psat" },
+  { label: "Research & discovery", icon: "⌕", team: "ctmr" },
+  { label: "Helping others learn", icon: "✳", team: "teaching" },
+  { label: "A little of everything", icon: "+", team: "all" },
+];
+---
+
+<div class="team-finder" data-finder>
+  <div
+    class="finder-choices"
+    hidden
+    role="group"
+    aria-label="Choose an interest"
+  >
+    {interests.map((interest, i) => (
+      <button
+        type="button"
+        class:list={["interest-button", { selected: i === 0 }]}
+        aria-pressed={i === 0 ? "true" : "false"}
+        data-interest={interest.team}
+      >
+        <span aria-hidden="true">{interest.icon}</span>
+        {interest.label}
+        <span aria-hidden="true">↗</span>
+      </button>
+    ))}
+  </div>
+  <div class="finder-results" aria-live="polite" aria-atomic="true">
+    {teams.map((team) => (
+      <article class:list={["finder-result", team.id]} data-result={team.id}>
+        <span class="eyebrow">YOUR STARTING POINT / {team.acronym}</span>
+        <h3>{team.name}</h3>
+        <p>{team.summary}</p>
+        <a class="text-link" href={sitePath(`/teams/#${team.id}`)}>
+          Meet {team.acronym}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </article>
+    ))}
+    <article class="finder-result" data-result="teaching" hidden>
+      <span class="eyebrow">YOUR STARTING POINT / PSAT + CMAC</span>
+      <h3>Make learning your impact.</h3>
+      <p>
+        Explore training and cybermindfulness with PSAT, or help cybersecurity
+        ideas reach people through CMAC. Your interest in teaching connects both
+        teams.
+      </p>
+      <a class="text-link" href={sitePath("/teams/")}>
+        Explore both teams <span aria-hidden="true">↗</span>
+      </a>
+    </article>
+    <article class="finder-result" data-result="all" hidden>
+      <span class="eyebrow">YOUR STARTING POINT / ALL THREE TEAMS</span>
+      <h3>Curiosity is a great place to start.</h3>
+      <p>
+        Explore communication, training, and research. You don’t need to have it
+        all figured out to find an area you’d like to grow in.
+      </p>
+      <a class="text-link" href={sitePath("/teams/")}>
+        Explore all teams <span aria-hidden="true">↗</span>
+      </a>
+    </article>
+  </div>
+</div>
+<p class="finder-note">
+  A starting point, not a box. Interests can connect across teams.
+</p>
+<script>
+  document.querySelectorAll<HTMLElement>("[data-finder]").forEach((finder) => {
+    const choices = finder.querySelector<HTMLElement>(".finder-choices");
+    if (choices) choices.hidden = false;
+    finder.querySelectorAll<HTMLElement>("[data-result]").forEach((result) => {
+      result.hidden = result.dataset.result !== "cmac";
+    });
+    finder
+      .querySelectorAll<HTMLButtonElement>("[data-interest]")
+      .forEach((button) => {
+        button.addEventListener("click", () => {
+          finder
+            .querySelectorAll<HTMLButtonElement>("[data-interest]")
+            .forEach((choice) => {
+              const active = choice === button;
+              choice.setAttribute("aria-pressed", String(active));
+              choice.classList.toggle("selected", active);
+            });
+          finder
+            .querySelectorAll<HTMLElement>("[data-result]")
+            .forEach((result) => {
+              result.hidden = result.dataset.result !== button.dataset.interest;
+            });
+        });
+      });
+  });
+</script>
