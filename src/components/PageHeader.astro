@@ -1,17 +1,33 @@
 ---
+import { sitePath } from "../utils/paths";
 interface Props {
   eyebrow?: string;
   title: string;
+  accent?: string;
   description: string;
 }
-const { eyebrow, title, description } = Astro.props;
+const { eyebrow, title, accent, description } = Astro.props;
 ---
 
-<header class="page-header">
+<header class="page-hero">
   <div class="container">
-    {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-    <h1>{title}</h1>
-    <p class="intro">{description}</p>
+    <a class="breadcrumb" href={sitePath("/")}>
+      Home <span aria-hidden="true">/</span>
+    </a>
+    {eyebrow && <span class="eyebrow">{eyebrow}</span>}
+    <h1>
+      {title}
+      {accent && (
+        <>
+          <br />
+          <em>{accent}</em>
+        </>
+      )}
+    </h1>
+    <p>{description}</p>
     <slot />
+  </div>
+  <div class="page-hero-mark" aria-hidden="true">
+    ↗
   </div>
 </header>

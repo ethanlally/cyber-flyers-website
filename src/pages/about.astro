@@ -2,6 +2,7 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import Arrow from "../components/Arrow.astro";
 import {
   academicYear,
   members,
@@ -9,7 +10,18 @@ import {
   memberById,
   executiveDirector,
 } from "../data/content";
-const director = memberById(executiveDirector);
+const leadership = [
+  {
+    person: memberById(executiveDirector),
+    role: "Executive Director",
+    href: "/teams/",
+  },
+  ...teams.map((team) => ({
+    person: memberById(team.director),
+    role: `${team.acronym} Director`,
+    href: `/teams/#${team.id}`,
+  })),
+];
 ---
 
 <BaseLayout
@@ -17,91 +29,131 @@ const director = memberById(executiveDirector);
   description="Learn about Cyber Flyers, a student-led cybersecurity initiative at the University of Dayton, and its history and leadership."
 >
   <PageHeader
-    title="About Cyber Flyers"
+    eyebrow="OUR STORY / EST. 2024"
+    title="About"
+    accent="Cyber Flyers."
     description="A student-led cybersecurity initiative at the University of Dayton."
   />
-  <section class="section container split">
-    <div>
-      <h2>Our mission</h2>
-      <p>
-        Cyber Flyers provides cybersecurity education, training, and outreach to
-        the student community at the University of Dayton. Students gain
-        experience through research, technical projects, and peer-to-peer
-        education.
-      </p>
-    </div>
-    <div>
-      <h2>University support</h2>
-      <p>
-        The initiative is a joint effort between the Center for Cybersecurity
-        and Data Intelligence (CCDI) and UDit, with student leadership and
-        advising from CCDI.
-      </p>
-      <a href="https://udayton.edu/centers/cybersecurity/initiatives.php#cyber-flyers">
-        Cyber Flyers at UD
-      </a>
+  <section class="section">
+    <div class="container editorial-split" data-reveal>
+      <div>
+        <span class="eyebrow">OUR PURPOSE</span>
+        <h2>Our mission.</h2>
+        <p>
+          Cyber Flyers provides cybersecurity education, training, and outreach
+          to the student community at the University of Dayton. Students gain
+          experience through research, technical projects, and peer-to-peer
+          education.
+        </p>
+      </div>
+      <div class="prose">
+        <h2>University support.</h2>
+        <p>
+          The initiative is a joint effort between the Center for Cybersecurity
+          and Data Intelligence (CCDI) and UDit, with student leadership and
+          advising from CCDI.
+        </p>
+        <a
+          class="text-link"
+          href="https://udayton.edu/centers/cybersecurity/initiatives.php#cyber-flyers"
+        >
+          Cyber Flyers at UD <Arrow diagonal />
+        </a>
+      </div>
     </div>
   </section>
-  <section class="section container">
-    <h2>History</h2>
-    <ol class="timeline">
-      <li>
-        <span>Fall 2024</span>
-        <p>
-          Cyber Flyers began at CCDI with six students and a focus on
-          peer-to-peer cybersecurity education.
-        </p>
-      </li>
-      <li>
-        <span>2025–2026</span>
-        <p>
-          The team grew to 14 students, organizing its work around specialized
-          teams and student directors.
-        </p>
-      </li>
-      <li>
-        <span>{academicYear}</span>
-        <p>
-          {members.length} students contribute to communication, phishing
-          training, and threat research across {teams.length} teams.
-        </p>
-      </li>
-    </ol>
-    <a href={sitePath("/impact/")}>Past activities and reports</a>
+  <section class="section pale-section">
+    <div class="container">
+      <div class="section-heading" id="history">
+        <div>
+          <span class="eyebrow">OUR HISTORY</span>
+          <h2>How we took flight.</h2>
+        </div>
+      </div>
+      <div class="timeline">
+        <article data-reveal>
+          <span class="eyebrow">FALL 2024</span>
+          <strong>06</strong>
+          <h3>The founding team</h3>
+          <p>
+            Cyber Flyers began at CCDI with six students and a focus on
+            peer-to-peer cybersecurity education.
+          </p>
+        </article>
+        <article data-reveal>
+          <span class="eyebrow">2025–2026</span>
+          <strong>14</strong>
+          <h3>A growing team</h3>
+          <p>
+            The team grew to 14 students, organizing its work around specialized
+            teams and student directors.
+          </p>
+        </article>
+        <article data-reveal>
+          <span class="eyebrow">{academicYear}</span>
+          <strong>{members.length}</strong>
+          <h3>Our current chapter</h3>
+          <p>
+            {members.length} students contribute to communication, phishing
+            training, and threat research across {teams.length} teams.
+          </p>
+        </article>
+      </div>
+      <div class="stack-links">
+        <a class="text-link" href={sitePath("/impact/#highlights")}>
+          Past activities and reports <Arrow diagonal />
+        </a>
+      </div>
+    </div>
   </section>
-  <section class="section container">
-    <h2>Leadership</h2>
-    <p>Academic year {academicYear}</p>
-    <div class="leadership-grid">
-      <article class="leader">
-        <p class="eyebrow">Executive Director</p>
-        <h3>{director.name}</h3>
-        <p>
-          {director.standing} · {director.majors}
-        </p>
-      </article>
-      {teams.map((team) => {
-        const person = memberById(team.director);
-        return (
-          <article class="leader">
-            <p class="eyebrow">{team.acronym} Director</p>
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ACADEMIC YEAR {academicYear}</span>
+          <h2 id="leadership">Leadership.</h2>
+        </div>
+      </div>
+      <div class="leadership-grid">
+        {leadership.map(({ person, role, href }) => (
+          <article class="person-leader" data-reveal>
+            <div class="initials" aria-hidden="true">
+              {person.name
+                .split(" ")
+                .map((n) => n[0])
+                .slice(0, 2)
+                .join("")}
+            </div>
             <h3>{person.name}</h3>
+            <span class="eyebrow">{role}</span>
             <p>
               {person.standing} · {person.majors}
             </p>
-            <a href={sitePath(`/teams/#${team.id}`)}>{team.acronym} members</a>
+            <a class="text-link" href={sitePath(href)}>
+              Team members <Arrow diagonal />
+            </a>
           </article>
-        );
-      })}
+        ))}
+      </div>
     </div>
   </section>
-  <section class="section container">
-    <h2>Texas Cyber Range partnership</h2>
-    <p class="prose">
-      Cyber Flyers partners with the Texas Cyber Range at Texas A&amp;M to share
-      the results of student-led cybersecurity initiatives. TxCR also hosts the
-      Cyber Flyers blog.
-    </p>
-    <a href="https://cf.therangerpost.com/">Cyber Flyers blog</a>
+  <section class="section navy-section">
+    <div class="container editorial-split">
+      <h2>
+        Texas Cyber Range
+        <br />
+        <em>partnership.</em>
+      </h2>
+      <div>
+        <p>
+          Cyber Flyers partners with the Texas Cyber Range at Texas A&amp;M to
+          share the results of student-led cybersecurity initiatives. TxCR also
+          hosts the Cyber Flyers blog.
+        </p>
+        <a class="button button-turquoise" href="https://cf.therangerpost.com/">
+          Cyber Flyers blog <Arrow diagonal />
+        </a>
+      </div>
+    </div>
   </section>
 </BaseLayout>

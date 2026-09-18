@@ -2,6 +2,7 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import Arrow from "../components/Arrow.astro";
 import {
   academicYear,
   teams,
@@ -18,87 +19,86 @@ const executive = memberById(executiveDirector);
 >
   <PageHeader
     eyebrow={`Academic year ${academicYear}`}
-    title="Our teams"
+    title="Our teams."
     description="Team responsibilities and the current student roster. Some members contribute to more than one team."
-  >
-    <nav class="anchor-nav" aria-label="Jump to team">
-      {teams.map((team) => (
-        <a href={`#${team.id}`}>{team.acronym}</a>
-      ))}
-    </nav>
-  </PageHeader>
+  />
+  <nav class="container subnav" aria-label="Jump to team">
+    {teams.map((team, i) => (
+      <a href={`#${team.id}`}>
+        0{i + 1} / {team.acronym}
+        <Arrow diagonal />
+      </a>
+    ))}
+  </nav>
   <div class="container executive-bar">
     <span class="eyebrow">Executive Director</span>
     <strong>{executive.name}</strong>
     <span>
       {executive.standing} · {executive.majors}
     </span>
-    <a href={sitePath("/about/")}>About our leadership</a>
+    <a class="text-link" href={sitePath("/about/#leadership")}>
+      About our leadership <Arrow />
+    </a>
   </div>
-  {teams.map((team) => {
+  {teams.map((team, i) => {
     const director = memberById(team.director);
     const roster = [director, ...team.memberIds.map(memberById)];
     return (
       <section
-        id={team.id}
-        class="section container team-section"
+        class:list={["section", "team-detail", team.id]}
         aria-labelledby={`${team.id}-title`}
       >
-        <div>
-          <div class="team-heading">
+        <div class="container">
+          <div class="team-detail-heading" id={team.id} data-reveal>
+            <span class="giant-code" aria-hidden="true">
+              {team.acronym}
+            </span>
             <div>
-              <p class="eyebrow">{team.acronym}</p>
+              <span class="eyebrow">
+                0{i + 1} / {team.acronym}
+              </span>
               <h2 id={`${team.id}-title`}>{team.name}</h2>
-              <p>{team.mission}</p>
+              <p class="lead">{team.mission}</p>
             </div>
-            <div class="team-priorities">
-              <h3>This year’s priorities</h3>
-              <ul>
+          </div>
+          <div class="team-detail-body">
+            <div>
+              <h3 class="eyebrow">This year’s priorities</h3>
+              <ul class="line-list">
                 {team.priorities.map((priority) => (
                   <li>{priority}</li>
                 ))}
               </ul>
+              <div class="team-outcome">
+                <h3 class="eyebrow">Related programs</h3>
+                <div class="stack-links">
+                  {team.programIds.map((id) => (
+                    <a class="text-link" href={sitePath(`/programs/#${id}`)}>
+                      {programs.find((p) => p.id === id)!.name}
+                      <Arrow diagonal />
+                    </a>
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="roster-heading">
-            <h3>Members</h3>
-            <span class="small">
-              AY {academicYear} · {roster.length} students
-            </span>
-          </div>
-          <ul class="roster">
-            {roster.map((person) => (
-              <li
-                class:list={[
-                  "member",
-                  { "member-director": person.id === team.director },
-                ]}
-              >
-                <div>
-                  <h4>{person.name}</h4>
+            <div class="roster">
+              <div class="roster-heading">
+                <h3 class="eyebrow">Members / AY {academicYear}</h3>
+                <span>{roster.length} students</span>
+              </div>
+              {roster.map((person) => (
+                <div class="roster-person">
+                  <div>
+                    <strong>{person.name}</strong>
+                    {person.id === team.director && (
+                      <span class="director-label">Director</span>
+                    )}
+                  </div>
                   <span>
                     {person.standing} · {person.majors}
                   </span>
                 </div>
-                <span class="role">
-                  {person.id === team.director ? "Director" : "Member"}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div class="related-programs">
-            <div>
-              <h3>Related programs</h3>
-              <ul class="plain-list">
-                {team.programIds.map((id) => {
-                  const program = programs.find((p) => p.id === id)!;
-                  return (
-                    <li>
-                      <a href={sitePath(`/programs/#${id}`)}>{program.name}</a>
-                    </li>
-                  );
-                })}
-              </ul>
+              ))}
             </div>
           </div>
         </div>

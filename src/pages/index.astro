@@ -1,77 +1,264 @@
 ---
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Arrow from "../components/Arrow.astro";
+import MediaPlaceholder from "../components/MediaPlaceholder.astro";
+import TeamFinder from "../components/TeamFinder.astro";
+import ClosingCTA from "../components/ClosingCTA.astro";
 import { academicYear, members, teams, programs } from "../data/content";
 ---
 
 <BaseLayout title="Cyber Flyers">
-  <header class="home-intro">
-    <div class="container">
-      <div>
-        <h1>Cyber Flyers</h1>
-        <p class="tagline">Empowering students for a cyber-secure community.</p>
-      </div>
-      <div class="home-description">
-        <p>
+  <section class="home-hero">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow hero-eyebrow">
+          <span class="status-dot"></span>UNIVERSITY OF DAYTON / CYBER FLYERS
+        </span>
+        <h1>
+          CYBER
+          <br />
+          <span>FLYERS.</span>
+        </h1>
+        <p class="hero-lead">
+          Empowering students for a cyber-secure community.
+        </p>
+        <p class="hero-description">
           Cyber Flyers is a student-led organization at the University of
           Dayton. We provide cybersecurity education, training, and outreach
           with support from the Center for Cybersecurity and Data Intelligence
           (CCDI) and UDit.
         </p>
-        <p class="year-note">
-          Academic year {academicYear} · {members.length} students ·{" "}
-          {teams.length} teams
-        </p>
-        <a href={sitePath("/about/")}>About Cyber Flyers</a>
+        <div class="hero-actions">
+          <a class="button button-red" href={sitePath("/get-involved/")}>
+            Get involved <Arrow diagonal />
+          </a>
+          <a class="text-link" href={sitePath("/about/")}>
+            About Cyber Flyers <Arrow />
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual" data-reveal>
+        <div class="hero-hatch" aria-hidden="true"></div>
+        <div class="hero-artwork">
+          <div class="hero-art-top">
+            <span>PEOPLE × PURPOSE × POSSIBILITY</span>
+            <span aria-hidden="true">[ CF / 26 ]</span>
+          </div>
+          <div class="hero-orbit" aria-hidden="true">
+            <svg viewBox="0 0 540 540" fill="none">
+              <g class="globe-lines">
+                <circle cx="270" cy="270" r="192" />
+                <ellipse cx="270" cy="270" rx="105" ry="192" />
+                <ellipse cx="270" cy="270" rx="41" ry="192" />
+                <ellipse cx="270" cy="270" rx="192" ry="83" />
+                <ellipse cx="270" cy="270" rx="192" ry="146" />
+                <path d="M78 270h384M270 78v384" />
+              </g>
+              <g class="orbital-ring">
+                <ellipse
+                  cx="270"
+                  cy="270"
+                  rx="245"
+                  ry="100"
+                  transform="rotate(-35 270 270)"
+                />
+                <circle cx="70" cy="410" r="7" />
+              </g>
+              <g class="orbit-satellites">
+                <circle cx="413" cy="144" r="7" />
+                <circle cx="125" cy="142" r="4" />
+                <circle cx="415" cy="400" r="5" />
+              </g>
+            </svg>
+            <div class="hero-keyhole">
+              <span></span>
+            </div>
+            <span class="orbit-label label-learn">LEARN</span>
+            <span class="orbit-label label-connect">CONNECT</span>
+            <span class="orbit-label label-protect">PROTECT</span>
+          </div>
+          <div class="hero-art-bottom">
+            <div>
+              <span class="tiny-label">BUILT ON CONNECTION</span>
+              <p>Stronger, together.</p>
+            </div>
+            <span class="hero-art-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </div>
+        </div>
+        <div class="visual-caption">
+          <span>
+            <span class="status-dot"></span> STUDENT-LED. FUTURE-FOCUSED.
+          </span>
+          <span>DAYTON, OHIO</span>
+        </div>
       </div>
     </div>
-  </header>
-
-  <section class="section container" aria-labelledby="teams-title">
-    <h2 id="teams-title">Our teams</h2>
-    <div class="team-overview">
-      {teams.map((team) => (
-        <article>
-          <p class="eyebrow">{team.acronym}</p>
-          <h3>
-            <a href={sitePath(`/teams/#${team.id}`)}>{team.name}</a>
-          </h3>
-          <p>{team.summary}</p>
+    <div class="container hero-bottom">
+      <span>
+        SCROLL TO EXPLORE <span aria-hidden="true">↓</span>
+      </span>
+      <span>ACADEMIC YEAR {academicYear}</span>
+    </div>
+  </section>
+  <section
+    class="community-strip"
+    aria-label={`Our community in ${academicYear}`}
+  >
+    <div class="container stats-strip">
+      <div class="stat-intro">
+        <span class="eyebrow">STUDENT LED</span>
+        <h2>Our community.</h2>
+      </div>
+      <div class="stat">
+        <strong>{members.length}</strong>
+        <span>students</span>
+      </div>
+      <div class="stat">
+        <strong>{String(teams.length).padStart(2, "0")}</strong>
+        <span>teams</span>
+      </div>
+      <div class="stat">
+        <strong>2024</strong>
+        <span>our founding year</span>
+      </div>
+    </div>
+  </section>
+  <section class="section teams-section" aria-labelledby="teams-title">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <div>
+          <span class="eyebrow">01 / OUR PEOPLE</span>
+          <h2 id="teams-title">Our teams.</h2>
+        </div>
+        <a class="text-link" href={sitePath("/teams/")}>
+          Meet the team <Arrow diagonal />
+        </a>
+      </div>
+      <div class="team-card-grid">
+        {teams.map((team, i) => (
+          <a
+            class:list={["team-card", team.id]}
+            href={sitePath(`/teams/#${team.id}`)}
+            data-reveal
+          >
+            <div class="team-card-top">
+              <span class="eyebrow">
+                0{i + 1} / {team.acronym}
+              </span>
+              <Arrow diagonal />
+            </div>
+            <div class="team-symbol" aria-hidden="true">
+              {["↗", "⌘", "✳"][i]}
+            </div>
+            <h3>{team.name}</h3>
+            <p>{team.summary}</p>
+            <div class="team-card-bottom">
+              <span>Explore {team.acronym}</span>
+              <Arrow />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section work-section" aria-labelledby="work-title">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <div>
+          <span class="eyebrow">02 / PROGRAMS & RESEARCH</span>
+          <h2 id="work-title">Current work.</h2>
+        </div>
+        <a class="text-link" href={sitePath("/programs/")}>
+          Explore our programs <Arrow diagonal />
+        </a>
+      </div>
+      <div class="program-mini-grid">
+        {programs.map((program, i) => (
+          <a
+            class="program-mini"
+            href={sitePath(`/programs/#${program.id}`)}
+            data-reveal
+          >
+            <span class="eyebrow">
+              0{i + 1} /{" "}
+              {program.teamIds.map((id) => id.toUpperCase()).join(" + ")}
+            </span>
+            <h3>{program.name}</h3>
+            <p>{program.summary}</p>
+            <Arrow diagonal />
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="section finder-section" aria-labelledby="finder-title">
+    <div class="container">
+      <div class="section-heading" data-reveal>
+        <div>
+          <span class="eyebrow">03 / YOUR INTERESTS</span>
+          <h2 id="finder-title">
+            Find your place
+            <br />
+            <em>in cyber.</em>
+          </h2>
+        </div>
+        <p>Explore which teams connect with your interests.</p>
+      </div>
+      <TeamFinder />
+    </div>
+  </section>
+  <section class="section journal-section" aria-label="Articles and reports">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">04 / FROM OUR COMMUNITY</span>
+          <h2>Articles & reports.</h2>
+        </div>
+      </div>
+      <div class="journal-grid">
+        <article class="journal-card" data-reveal>
+          <a href="https://cf.therangerpost.com/">
+            <MediaPlaceholder
+              label="Cyber Flyers articles"
+              variant="signal"
+              number="01"
+            />
+            <div class="journal-meta">
+              STUDENT WRITING <span>TEXAS CYBER RANGE</span>
+            </div>
+            <h3>
+              Cyber Flyers blog <Arrow diagonal />
+            </h3>
+            <p>
+              Read articles by Cyber Flyers members on the blog hosted by the
+              Texas Cyber Range.
+            </p>
+          </a>
         </article>
-      ))}
-    </div>
-  </section>
-
-  <section class="section container" aria-labelledby="work-title">
-    <h2 id="work-title">Current work</h2>
-    <div class="work-list">
-      {programs.map((program) => (
-        <article class="work-row">
-          <h3>
-            <a href={sitePath(`/programs/#${program.id}`)}>{program.name}</a>
-          </h3>
-          <p>{program.summary}</p>
+        <article class="journal-card" data-reveal>
+          <a href={sitePath("/impact/#highlights")}>
+            <MediaPlaceholder
+              label="Our work on campus"
+              variant="grid"
+              number="02"
+            />
+            <div class="journal-meta">
+              IMPACT & REPORTS <span>2025–2026</span>
+            </div>
+            <h3>
+              2025–2026 highlights <Arrow diagonal />
+            </h3>
+            <p>
+              Last year's activities included campus tabling, guest speakers,
+              phishing simulations, and training material for UDit.
+            </p>
+          </a>
         </article>
-      ))}
+      </div>
     </div>
   </section>
-
-  <section class="section container split" aria-label="Articles and reports">
-    <div>
-      <h2>Articles</h2>
-      <p>
-        Read articles by Cyber Flyers members on the blog hosted by the Texas
-        Cyber Range.
-      </p>
-      <a href="https://cf.therangerpost.com/">Cyber Flyers blog</a>
-    </div>
-    <div>
-      <h2>2025–2026 highlights</h2>
-      <p>
-        Last year's activities included campus tabling, guest speakers, phishing
-        simulations, and training material for UDit.
-      </p>
-      <a href={sitePath("/impact/")}>Impact and reports</a>
-    </div>
-  </section>
+  <ClosingCTA />
 </BaseLayout>

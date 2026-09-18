@@ -1,0 +1,66 @@
+---
+interface Props {
+  label?: string;
+  number?: string;
+  variant?: "grid" | "signal" | "orbit";
+  large?: boolean;
+}
+
+const {
+  label = "Community in action",
+  number = "01",
+  variant = "grid",
+  large = false,
+} = Astro.props;
+---
+
+<div
+  class:list={[
+    "media-placeholder",
+    `media-${variant}`,
+    { "media-large": large },
+  ]}
+  role="img"
+  aria-label={`Image placeholder: ${label}`}
+>
+  <div class="media-backdrop" aria-hidden="true"></div>
+  <span class="media-cross cross-one" aria-hidden="true">
+    +
+  </span>
+  <span class="media-cross cross-two" aria-hidden="true">
+    +
+  </span>
+  <div class="placeholder-art" aria-hidden="true">
+    {variant === "orbit" ? (
+      <svg viewBox="0 0 420 420" fill="none">
+        <circle cx="210" cy="210" r="154" />
+        <ellipse cx="210" cy="210" rx="78" ry="154" />
+        <ellipse cx="210" cy="210" rx="27" ry="154" />
+        <ellipse cx="210" cy="210" rx="154" ry="65" />
+        <ellipse cx="210" cy="210" rx="154" ry="115" />
+        <path d="M56 210h308M210 56v308" />
+        <circle class="orbit-dot" cx="330" cy="112" r="7" />
+      </svg>
+    ) : variant === "signal" ? (
+      <svg viewBox="0 0 420 300" fill="none">
+        <path d="M30 150h90l45-80 70 160 45-80h110" />
+        <circle cx="120" cy="150" r="8" />
+        <circle cx="280" cy="150" r="8" />
+        <path d="M60 65h60M60 65v50M360 235h-60m60 0v-50" />
+      </svg>
+    ) : (
+      <svg viewBox="0 0 420 300" fill="none">
+        <path d="M45 65h125l60 60h135M45 150h95l70 85h155M95 65v150M300 125v110" />
+        <circle cx="45" cy="65" r="8" />
+        <circle cx="45" cy="150" r="8" />
+        <circle cx="365" cy="125" r="8" />
+        <circle cx="365" cy="235" r="8" />
+        <circle cx="95" cy="215" r="8" />
+      </svg>
+    )}
+  </div>
+  <div class="media-caption">
+    <span class="eyebrow">{label}</span>
+    <span>IMAGE PLACEHOLDER / {number}</span>
+  </div>
+</div>

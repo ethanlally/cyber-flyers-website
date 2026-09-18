@@ -2,7 +2,12 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import Arrow from "../components/Arrow.astro";
 import { resourceGroups } from "../data/content";
+const count = resourceGroups.reduce(
+  (total, group) => total + group.items.length,
+  0,
+);
 ---
 
 <BaseLayout
@@ -10,30 +15,72 @@ import { resourceGroups } from "../data/content";
   description="Cyber Flyers articles, cybermindfulness learning material, and cybersecurity reference guides from the University of Dayton and NIST."
 >
   <PageHeader
-    title="Resources"
-    description="Articles, learning material, and reference guides. These links open resources hosted outside this website; our blog remains hosted by the Texas Cyber Range."
+    eyebrow="THE RESOURCE LIBRARY"
+    title="Resources."
+    description="Articles, learning material, and reference guides from Cyber Flyers and our partners."
   />
-  {resourceGroups.map((group) => (
-    <section
-      class="section container resource-section"
-      id={group.id}
-      aria-labelledby={`${group.id}-title`}
-    >
-      <div class="resource-intro">
-        <h2 id={`${group.id}-title`}>{group.title}</h2>
-        <p>{group.description}</p>
+  <section class="section">
+    <div class="container" data-filter-group>
+      <div class="resource-toolbar" hidden>
+        <div class="filter-buttons" role="group" aria-label="Filter resources">
+          <button
+            type="button"
+            class="selected"
+            aria-pressed="true"
+            data-filter="all"
+          >
+            All resources
+          </button>
+          {resourceGroups.map((group) => (
+            <button type="button" aria-pressed="false" data-filter={group.id}>
+              {group.title}
+            </button>
+          ))}
+        </div>
+        <label class="resource-search">
+          <span class="sr-only">Search resources</span>
+          <input type="search" data-search placeholder="Search resources" />
+          <span aria-hidden="true">⌕</span>
+        </label>
       </div>
-      <div class="resource-list">
-        {group.items.map((item) => (
-          <article class="resource-item">
-            <p class="eyebrow">{item.label}</p>
-            <h3>
-              <a href={sitePath(item.url)}>{item.title}</a>
-            </h3>
-            <p>{item.description}</p>
-          </article>
-        ))}
-      </div>
-    </section>
-  ))}
+      <p class="filter-status" role="status" data-filter-status>
+        {count} resources
+      </p>
+      {resourceGroups.map((group) => (
+        <section
+          id={group.id}
+          class="resource-section"
+          data-resource-section
+          aria-labelledby={`${group.id}-title`}
+        >
+          <div class="section-heading">
+            <div>
+              <h2 id={`${group.id}-title`}>{group.title}</h2>
+              <p>{group.description}</p>
+            </div>
+          </div>
+          <div class="resource-grid">
+            {group.items.map((item, i) => (
+              <a
+                class="resource-card"
+                href={sitePath(item.url)}
+                data-category={group.id}
+              >
+                <div class="resource-card-top">
+                  <span class="eyebrow">{group.title}</span>
+                  <Arrow diagonal />
+                </div>
+                <span class="resource-number" aria-hidden="true">
+                  0{i + 1}
+                </span>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <span class="resource-source">{item.label}</span>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
 </BaseLayout>

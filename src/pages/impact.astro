@@ -2,6 +2,7 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import Arrow from "../components/Arrow.astro";
 import { academicYear, members, teams } from "../data/content";
 const highlights = [
   {
@@ -32,40 +33,64 @@ const highlights = [
   description="Cyber Flyers activities from 2025–2026 and information about the current 2026–2027 team."
 >
   <PageHeader
-    title="Impact & reports"
+    eyebrow="OUR PROGRESS"
+    title="Impact &"
+    accent="reports."
     description="Past activities and annual reports, organized by academic year."
   />
-  <section class="section container">
-    <h2>{academicYear}</h2>
-    <p>
-      The current roster includes {members.length} students across{" "}
-      {teams.length} teams. Activities and results will be added as the year
-      progresses.
-    </p>
-    <div class="actions">
-      <a href={sitePath("/teams/")}>Current team</a>
-      <a href={sitePath("/programs/")}>Programs and research priorities</a>
+  <section class="section">
+    <div class="container editorial-split" data-reveal>
+      <div>
+        <span class="eyebrow">OUR CURRENT CHAPTER</span>
+        <h2>{academicYear}</h2>
+      </div>
+      <div class="prose">
+        <p class="lead">
+          The current roster includes {members.length} students across{" "}
+          {teams.length} teams.
+        </p>
+        <p>Activities and results will be added as the year progresses.</p>
+        <div class="stack-links">
+          <a class="text-link" href={sitePath("/teams/")}>
+            Current team <Arrow diagonal />
+          </a>
+          <a class="text-link" href={sitePath("/programs/")}>
+            Programs and research priorities <Arrow diagonal />
+          </a>
+        </div>
+      </div>
     </div>
   </section>
-  <section class="section container">
-    <h2>2025–2026 highlights</h2>
-    <p>
-      These activities are drawn from the Cyber Flyers 2025–2026 Annual Report.
-    </p>
-    <div class="highlight-grid">
-      {highlights.map((highlight) => (
-        <article>
-          <h3>{highlight.title}</h3>
-          <p>{highlight.description}</p>
-        </article>
-      ))}
+  <section class="section pale-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">FROM THE ANNUAL REPORT</span>
+          <h2 id="highlights">2025–2026 highlights.</h2>
+        </div>
+      </div>
+      <div class="partnership-grid">
+        {highlights.map((highlight) => (
+          <article data-reveal>
+            <h3>{highlight.title}</h3>
+            <p>{highlight.description}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
-  <section class="section container">
-    <h2>Annual reports</h2>
-    <div class="report-entry">
-      <h3>2025–2026 Cyber Flyers Annual Report</h3>
-      <p class="status-note">Report download coming soon.</p>
+  <section class="section">
+    <div class="container editorial-split">
+      <h2 id="reports">Annual reports.</h2>
+      <article class="report-card">
+        <span class="eyebrow">2025–2026</span>
+        <h3>
+          Cyber Flyers
+          <br />
+          <em>Annual Report</em>
+        </h3>
+        <p class="availability">Report download coming soon.</p>
+      </article>
     </div>
   </section>
 </BaseLayout>

@@ -2,6 +2,8 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import MediaPlaceholder from "../components/MediaPlaceholder.astro";
+import Arrow from "../components/Arrow.astro";
 import { academicYear, programs, teams } from "../data/content";
 ---
 
@@ -11,42 +13,58 @@ import { academicYear, programs, teams } from "../data/content";
 >
   <PageHeader
     eyebrow={`Academic year ${academicYear}`}
-    title="Programs & research"
+    title="Programs &"
+    accent="research."
     description="The following projects guide the teams' work this academic year."
-  >
-    <nav class="anchor-nav" aria-label="Jump to program">
-      {programs.map((program) => (
-        <a href={`#${program.id}`}>{program.name}</a>
-      ))}
-    </nav>
-  </PageHeader>
-  {programs.map((program) => (
-    <section
-      class="section container split"
-      id={program.id}
-      aria-labelledby={`${program.id}-title`}
-    >
-      <div>
-        <h2 id={`${program.id}-title`}>{program.name}</h2>
-        <p>{program.description}</p>
-        <div class="team-tags">
-          <span>Teams:</span>
-          {program.teamIds.map((id) => (
-            <a href={sitePath(`/teams/#${id}`)}>
-              {teams.find((team) => team.id === id)!.acronym}
+  />
+  <nav class="container subnav program-subnav" aria-label="Jump to program">
+    {programs.map((program) => (
+      <a href={`#${program.id}`}>
+        {program.name}
+        <Arrow diagonal />
+      </a>
+    ))}
+  </nav>
+  <section class="section">
+    <div class="container">
+      {programs.map((program, i) => (
+        <article
+          id={program.id}
+          class="program-detail"
+          aria-labelledby={`${program.id}-title`}
+          data-reveal
+        >
+          <MediaPlaceholder
+            label={program.name}
+            number={`0${i + 1}`}
+            variant={i % 2 ? "signal" : "grid"}
+          />
+          <div>
+            <span class="eyebrow">0{i + 1} / PROGRAMS & RESEARCH</span>
+            <h2 id={`${program.id}-title`}>{program.name}</h2>
+            <p>{program.description}</p>
+            <div class="tags" aria-label="Contributing teams">
+              {program.teamIds.map((id) => (
+                <a href={sitePath(`/teams/#${id}`)}>
+                  {teams.find((team) => team.id === id)!.acronym}
+                </a>
+              ))}
+            </div>
+            <div class="deliverable">
+              <h3 class="small-label">Areas of focus</h3>
+              <ul class="line-list">
+                {program.focus.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </div>
+            <a class="text-link" href={sitePath(program.resource)}>
+              {program.resourceLabel}
+              <Arrow diagonal />
             </a>
-          ))}
-        </div>
-      </div>
-      <div class="program-detail">
-        <h3>Areas of focus</h3>
-        <ul>
-          {program.focus.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-        <a href={sitePath(program.resource)}>{program.resourceLabel}</a>
-      </div>
-    </section>
-  ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
 </BaseLayout>

@@ -2,6 +2,7 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import Arrow from "../components/Arrow.astro";
 ---
 
 <BaseLayout
@@ -14,6 +15,8 @@ import PageHeader from "../components/PageHeader.astro";
     description="The page you're looking for may have moved, or the address may be incorrect."
   />
   <div class="container section">
-    <a href={sitePath("/")}>Back to Cyber Flyers</a>
+    <a class="button button-red" href={sitePath("/")}>
+      Back to Cyber Flyers <Arrow diagonal />
+    </a>
   </div>
 </BaseLayout>
