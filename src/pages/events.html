@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Events | Cyber Flyers</title>
+
+  <meta name="description" content="Cyber Flyers approved upcoming events and past engagement.">
+
+  <style>
+:root{--navy:#1c214f;--ink:#18315d;--body:#526078;--red:#ed0033;--blue:#e6f8fc;--gray:#f5f7f9;--line:#cfd5e1}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:110px}body{margin:0;color:var(--body);font:15.5px/1.8 Arial,Helvetica,sans-serif;letter-spacing:.3px}a{color:var(--ink);text-decoration:none}button,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:3px solid #30bfae;outline-offset:5px}button:disabled{cursor:default;opacity:.65}.wrap{width:min(1200px,calc(100% - 64px));margin:auto}.site-header{background:#fff;border-bottom:1px solid #e2e6ec;position:sticky;top:0;z-index:10}.nav-row{display:flex;align-items:center;gap:35px;min-height:92px}.brand{display:flex;align-items:center;margin-right:auto;flex-shrink:0}.brand svg{width:182px;height:52px}.main-nav{display:flex;gap:28px;align-items:center}.main-nav a{font-size:13.5px;font-weight:600;white-space:nowrap;padding:12px 0 8px;border-bottom:1px solid transparent}.main-nav a.active,.main-nav a:hover{color:var(--red);border-color:var(--red)}.cta{display:inline-flex;align-items:center;justify-content:center;gap:24px;background:var(--red);color:white;text-transform:uppercase;font-size:13px;font-weight:700;padding:12px 20px;min-height:48px;clip-path:polygon(0 0,100% 0,100% calc(100% - 14px),calc(100% - 14px) 100%,0 100%)}.cta:hover{background:#c6002a}.cta span{font-size:22px;line-height:1}.hero{background:var(--blue);position:relative;overflow:hidden;padding:12px 0 70px}.hero:after{content:'↗';position:absolute;right:6%;top:24px;font:360px/1 Arial;color:#dff3f8;pointer-events:none}.hero .wrap{position:relative;z-index:1}.eyebrow,.kicker{display:block;text-transform:uppercase;font-size:9px;letter-spacing:1.6px;font-weight:700;color:var(--ink)}h1,h2,h3{font-family:Georgia,'Times New Roman',serif;color:var(--navy);line-height:1.12;letter-spacing:-1.5px}h1{font-size:74px;max-width:950px;margin:23px 0 26px}h1 em{font-weight:400}p{margin:0 0 20px}.hero p{max-width:680px;margin-bottom:0}.section{padding:100px 0}.section-title{font-size:50px;margin:20px 0 44px}.split{display:flex;justify-content:space-between;align-items:flex-end;gap:70px;margin-bottom:46px}.split .section-title{margin-bottom:0}.section-intro{max-width:360px;margin-bottom:0}.grid-3,.grid-4,.grid-2{display:grid;gap:24px}.grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:30px;border:1px solid var(--line);background:#fff;min-width:0}.card.gray{background:var(--gray)}.card.soft{background:var(--blue)}.career .grid-3 .card{border:0}.card h3{font-size:29px;letter-spacing:-.9px;margin:22px 0}.career .grid-3 h3{min-height:76px;margin-bottom:46px}.card h4{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--ink);margin:36px 0 14px}.card ul{padding-left:20px;margin:0}.card p:last-child{margin-bottom:0}.card-number{font:800 50px/1 'Arial Narrow',Impact,sans-serif;letter-spacing:-3px;color:#5a6987;margin:36px 0}.project-meta{display:flex;justify-content:space-between;gap:12px;font-size:10px;letter-spacing:1px;text-transform:uppercase;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}.alt{background:#f7f8fa}.blue{background:var(--blue)}.search-row{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:35px}.pill-row,.btn-row{display:flex;flex-wrap:wrap;gap:8px}.filter-btn,.btn-secondary{display:inline-flex;align-items:center;justify-content:center;background:white;border:1px solid #cbd1df;color:var(--ink);padding:10px 17px;font-size:13px}.filter-btn:hover,.filter-btn.active,.filter-btn[aria-pressed=true]{background:var(--navy);color:#fff;border-color:var(--navy)}.btn-secondary:hover{border-color:var(--red);color:var(--red)}.btn-row{gap:16px;margin-top:28px}.muted{color:#778194;font-size:13px}.callout{border-top:1px solid var(--line);padding-top:24px;font-size:14px}.event-row{display:grid;grid-template-columns:110px 1fr auto;align-items:center;gap:32px;border-top:1px solid var(--line);padding:30px 0}.event-row:last-child{border-bottom:1px solid var(--line)}.event-date{font:700 42px/1.2 Georgia,serif;color:var(--navy)}.event-date small{display:block;font:700 10px/2 Arial;letter-spacing:2px}.event-row h3{font-size:28px;margin:0 0 10px}.event-row p{margin:0}.faq-item{border-top:1px solid var(--line)}.faq-item:last-child{border-bottom:1px solid var(--line)}.faq-q{display:flex;align-items:center;justify-content:space-between;gap:30px;width:100%;border:0;background:transparent;text-align:left;color:var(--navy);font:600 23px/1.4 Georgia,serif;padding:25px 0}.plus{color:var(--red);font:28px Arial}.faq-a{max-width:850px;padding:0 0 15px}.result-box{margin-top:30px;padding:32px;background:var(--blue);border-top:2px solid var(--navy)}.result-box h3{font-size:30px;margin:0 0 16px}.result-box p{margin:0}.section-intro+.pill-row{margin-top:30px}.site-footer{padding:40px 0;border-top:1px solid var(--line)}.footer-links{display:flex;flex-wrap:wrap;gap:12px 25px;font-size:12px}.site-footer p{font-size:11px;margin-top:20px}.menu-toggle{display:none}.skip-link{position:fixed;left:12px;top:-100px;background:var(--navy);color:white;padding:8px 16px;z-index:100}.skip-link:focus{top:12px}[hidden]{display:none!important}
+@media(min-width:1600px){.hero{min-height:357px}}
+@media(max-width:1100px){.nav-row{gap:20px}.main-nav{gap:16px}.brand svg{width:158px}.nav-row>.cta{padding:12px;font-size:11px}h1{font-size:64px}.grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}.split{gap:36px}.section-title{font-size:44px}}
+@media(max-width:800px){.wrap{width:calc(100% - 40px)}.nav-row{min-height:78px;flex-wrap:wrap;gap:12px;padding:12px 0}.menu-toggle{display:block;border:1px solid var(--line);background:white;padding:7px 12px;color:var(--navy)}.main-nav{display:none;order:4;flex-basis:100%;flex-direction:column;align-items:stretch;gap:0;padding:8px 0}.main-nav.open{display:flex}.main-nav a{padding:10px}.nav-row>.cta{min-height:40px}.hero{padding:28px 0 48px}.hero:after{font-size:240px;right:-30px;top:55px}h1{font-size:clamp(42px,7.5vw,64px);letter-spacing:-1.4px}.hero p{max-width:90%}.section{padding:58px 0}.split{display:block;margin-bottom:32px}.split .section-intro{max-width:650px;margin-top:24px}.section-title{font-size:38px}.grid-3{grid-template-columns:1fr}.career .grid-3 h3{min-height:0;margin-bottom:30px}.card{padding:28px}.search-row{align-items:flex-start;flex-direction:column}.event-row{grid-template-columns:80px 1fr;gap:20px}.event-row>.btn-secondary{grid-column:2;justify-self:start}.faq-q{font-size:21px}.grid-2{grid-template-columns:1fr}}
+@media(max-width:420px){.brand svg{width:136px}.nav-row{gap:8px}.nav-row>.cta{font-size:9px;padding:9px;gap:8px}.menu-toggle{font-size:12px;padding:7px}.grid-4{grid-template-columns:1fr}.card h3{font-size:27px}body{font-size:15px}.hero p{max-width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style></head>
+
+
+<body class="events">
+
+
+  <a class="skip-link" href="#main">Skip to content</a><header class="site-header">
+
+    <div class="wrap nav-row">
+
+
+      <a class="brand" href="career.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 54" role="img" aria-label="Cyber Flyers"><g fill="none" stroke="#37c2b1" stroke-width="2.5"><path d="M8 8h49c18 0 18 20 18 20H58M17 18h22v9h14M30 38H20l-8-10M56 8v14"></path><circle cx="8" cy="8" r="2"></circle><circle cx="17" cy="18" r="2"></circle><circle cx="39" cy="18" r="2"></circle></g><g fill="none" stroke="#b63b2c" stroke-width="2.5"><path d="M39 38v12h22q15 0 15-15M58 25v14"></path><circle cx="39" cy="38" r="2"></circle><circle cx="76" cy="35" r="2"></circle></g><text x="90" y="26" fill="#37c2b1" font-family="Arial,sans-serif" font-size="20" letter-spacing="4">CYBER</text><text x="94" y="45" fill="#b63b2c" font-family="Arial,sans-serif" font-size="13" letter-spacing="6">FLYERS</text></svg></a><button class="menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false">Menu</button><nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+
+        <a href="faq.html">About</a>
+
+        <a href="find-your-place.html#teams">Our teams</a>
+
+        <a href="projects.html">
+          Our work
+        </a>
+
+        <a href="career.html">
+          Your future
+        </a>
+
+        <a href="start-here.html">
+          Resources
+        </a>
+
+      </nav>
+
+
+      <a class="cta" href="find-your-place.html">
+        Get involved ↗
+      </a>
+
+
+    </div>
+
+  </header>
+
+
+  <main id="main"><section class="hero">
+
+    <div class="wrap">
+
+      <div class="eyebrow">
+        Engage / Events
+      </div>
+
+      <h1>
+        Learn together.<br>
+        <em>Show up curious.</em>
+      </h1>
+
+      <p>
+        A clear destination for approved workshops, speakers,
+        tabling, competitions, symposium activity, and other
+        Cyber Flyers opportunities.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <section class="section">
+
+    <div class="wrap">
+
+
+      <div class="split">
+
+        <div>
+
+          <div class="eyebrow">
+            Upcoming
+          </div>
+
+          <h2 class="section-title">
+            What’s next.
+          </h2>
+
+        </div>
+
+
+        <p class="section-intro">
+
+          Only confirmed events should appear here.
+
+          Dates, locations, audiences, registration destinations,
+          and participating teams should be maintained by the
+          assigned content owner.
+
+        </p>
+
+      </div>
+
+
+      <div class="event-row">
+
+        <div class="event-date">
+
+          TBD
+
+          <small>
+            DATE
+          </small>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Approved event title
+          </h3>
+
+          <p class="muted">
+            Short purpose statement • Audience • Participating team
+          </p>
+
+        </div>
+
+
+        <span class="muted">Details forthcoming</span>
+
+      </div>
+
+
+      <div class="event-row">
+
+        <div class="event-date">
+
+          TBD
+
+          <small>
+            DATE
+          </small>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            Guest speaker or workshop
+          </h3>
+
+          <p class="muted">
+            Official location or registration destination when approved.
+          </p>
+
+        </div>
+
+
+        <span class="muted">Details forthcoming</span>
+
+      </div>
+
+
+      <div class="event-row">
+
+        <div class="event-date">
+
+          TBD
+
+          <small>
+            DATE
+          </small>
+
+        </div>
+
+
+        <div>
+
+          <h3>
+            CTF, symposium, or conference activity
+          </h3>
+
+          <p class="muted">
+            Publish only after participation and event details are finalized.
+          </p>
+
+        </div>
+
+
+        <span class="muted">Details forthcoming</span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="section alt">
+
+    <div class="wrap">
+
+      <div class="eyebrow">
+        Past engagement
+      </div>
+
+      <h2 class="section-title">
+        A dated record of where we’ve been.
+      </h2>
+
+
+      <div class="grid-3">
+
+        <div class="card">
+
+          <span class="kicker">
+            Past event
+          </span>
+
+          <h3>
+            Short recap
+          </h3>
+
+          <p>
+            Summarize the event, participating teams,
+            and approved aggregate reach.
+          </p>
+
+        </div>
+
+
+        <div class="card soft">
+
+          <span class="kicker">
+            Related resources
+          </span>
+
+          <h3>
+            Keep learning
+          </h3>
+
+          <p>
+            Link to approved presentations, training material,
+            articles, or authoritative resources.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <span class="kicker">
+            Photography
+          </span>
+
+          <h3>
+            Use when approved
+          </h3>
+
+          <p>
+            Add authentic event photography only after the
+            organization and University approve it for public use.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  </main><footer class="site-footer"><div class="wrap"><nav class="footer-links" aria-label="All pages"><a href="career.html">Career &amp; professional development</a><a href="projects.html">Project showcase</a><a href="events.html">Events</a><a href="start-here.html">Start here in cybersecurity</a><a href="partner.html">Partner with Cyber Flyers</a><a href="success.html">Member success &amp; alumni</a><a href="faq.html">Frequently asked questions</a><a href="find-your-place.html">Find your place in cyber</a></nav><p>CYBER FLYERS / Student led. Community focused.</p></div></footer><script>
+const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('.main-nav');toggle.addEventListener('click',()=>{const open=nav.classList.toggle('open');toggle.setAttribute('aria-expanded',open)});
+document.querySelectorAll('.faq-q').forEach((q,i)=>{const a=q.nextElementSibling;a.id='answer-'+i;q.setAttribute('aria-controls',a.id);q.setAttribute('aria-expanded','false');a.hidden=true;q.addEventListener('click',()=>{a.hidden=!a.hidden;q.setAttribute('aria-expanded',!a.hidden);q.querySelector('.plus').textContent=a.hidden?'+':'−'})});
+document.querySelectorAll('[data-filter]').forEach(b=>{b.setAttribute('aria-pressed',b.classList.contains('active'));b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>{x.classList.toggle('active',x===b);x.setAttribute('aria-pressed',x===b)});let count=0;document.querySelectorAll('[data-category]').forEach(c=>{c.hidden=b.dataset.filter!=='all'&&c.dataset.category!==b.dataset.filter;if(!c.hidden)count++});document.querySelector('#filter-status').textContent=count+' project'+(count===1?'':'s')+' shown'})});
+const suggestions={technology:['PSAT / Phishing Simulation & Training','Explore phishing analysis, GoPhish, training design, and practical security awareness.'],research:['CTMR / Cyber Threats & Mitigation Research','Explore emerging threats, mitigation analysis, research synthesis, and technical writing.'],communication:['CMAC / Campus Marketing & Communication','Explore campus outreach, event planning, marketing, and cybersecurity communication.'],teaching:['PSAT / Phishing Simulation & Training','Explore awareness education, cybermindfulness, and helping others recognize threats.'],unsure:['Explore all three teams','Start with CMAC, PSAT, and CTMR. Use the team descriptions below or visit Your future to compare the skills you can practice.']};
+document.querySelectorAll('[data-interest]').forEach(b=>{b.setAttribute('aria-pressed','false');b.addEventListener('click',()=>{document.querySelectorAll('[data-interest]').forEach(x=>x.setAttribute('aria-pressed',x===b));const result=document.querySelector('#interest-result'),s=suggestions[b.dataset.interest];result.querySelector('h3').textContent=s[0];result.querySelector('p').textContent=s[1]})});
+</script></body>
+</html>
