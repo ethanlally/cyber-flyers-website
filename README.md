@@ -32,6 +32,13 @@ npm run preview
 
 Build output: `dist/`. Preview: <http://localhost:4321>.
 
+## Formatting
+
+```sh
+npm run format
+npm run format:check
+```
+
 ## Automated builds (GitHub Actions)
 
 `.github/workflows/build.yml` runs on pushes and pull requests to `main`.

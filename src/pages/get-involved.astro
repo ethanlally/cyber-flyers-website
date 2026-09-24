@@ -2,6 +2,8 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import TeamFinder from "../components/TeamFinder.astro";
+import FAQ from "../components/FAQ.astro";
 ---
 
 <BaseLayout
@@ -9,58 +11,100 @@ import PageHeader from "../components/PageHeader.astro";
   description="Student participation and partnership opportunities with Cyber Flyers at the University of Dayton."
 >
   <PageHeader
-    title="Get involved"
+    eyebrow="STUDENTS & PARTNERS"
+    title="Get involved."
     description="Information for students interested in Cyber Flyers and organizations interested in collaborating."
   />
-  <section class="section container split">
-    <div>
-      <h2>Student participation</h2>
-      <p>
-        Cyber Flyers includes students from technical and nontechnical majors.
-        The teams work on communication, events, phishing simulations, training,
-        and research.
-      </p>
-      <p class="status-note">Student joining information coming soon.</p>
-    </div>
-    <div>
-      <h3>Team responsibilities</h3>
-      <ul>
-        <li>
-          <a href={sitePath("/teams/#cmac")}>CMAC</a>: social media, educational
-          campaigns, campus outreach, and events.
-        </li>
-        <li>
-          <a href={sitePath("/teams/#psat")}>PSAT</a>: phishing simulations,
-          training, and cybermindfulness research.
-        </li>
-        <li>
-          <a href={sitePath("/teams/#ctmr")}>CTMR</a>: threat research,
-          educational articles, and training material.
-        </li>
-      </ul>
+  <section class="section">
+    <div class="container involvement-grid">
+      <article>
+        <h2 id="students">Student participation.</h2>
+        <p>
+          Cyber Flyers includes students from technical and nontechnical majors.
+          The teams work on communication, events, phishing simulations,
+          training, and research.
+        </p>
+        <p class="availability">Student joining information coming soon.</p>
+      </article>
+      <article>
+        <h2>Team responsibilities.</h2>
+        <ul class="line-list">
+          <li>
+            <span>
+              <a href={sitePath("/teams/#cmac")}>CMAC</a>: social media,
+              educational campaigns, campus outreach, and events.
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href={sitePath("/teams/#psat")}>PSAT</a>: phishing simulations,
+              training, and cybermindfulness research.
+            </span>
+          </li>
+          <li>
+            <span>
+              <a href={sitePath("/teams/#ctmr")}>CTMR</a>: threat research,
+              educational articles, and training material.
+            </span>
+          </li>
+        </ul>
+      </article>
     </div>
   </section>
-  <section class="section container">
-    <h2>Partnerships</h2>
-    <div class="partner-grid">
-      <article>
-        <h3>Campus organizations and departments</h3>
-        <p>
-          Potential collaborations include educational campaigns, campus events,
-          guest speakers, and training or research projects.
-        </p>
-        <p class="status-note">
-          Campus partnership contact information coming soon.
-        </p>
-      </article>
-      <article>
-        <h3>Community and industry partners</h3>
-        <p>
-          Partners can contribute professional experience through guest
-          speaking, event collaboration, and research partnerships.
-        </p>
-        <p class="status-note">Partner contact information coming soon.</p>
-      </article>
+  <section class="section finder-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">EXPLORE YOUR INTERESTS</span>
+          <h2>
+            Find your place
+            <br />
+            <em>in cyber.</em>
+          </h2>
+        </div>
+      </div>
+      <TeamFinder />
+    </div>
+  </section>
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">WORK WITH US</span>
+          <h2 id="partners">Partnerships.</h2>
+        </div>
+      </div>
+      <div class="partnership-grid">
+        <article data-reveal>
+          <h3>Campus organizations and departments</h3>
+          <p>
+            Potential collaborations include educational campaigns, campus
+            events, guest speakers, and training or research projects.
+          </p>
+          <p class="availability">
+            Campus partnership contact information coming soon.
+          </p>
+        </article>
+        <article data-reveal>
+          <h3>Community and industry partners</h3>
+          <p>
+            Partners can contribute professional experience through guest
+            speaking, event collaboration, and research partnerships.
+          </p>
+          <p class="availability">Partner contact information coming soon.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+  <section class="section pale-section">
+    <div class="container narrow">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">COMMON QUESTIONS</span>
+          <h2>Before you join.</h2>
+        </div>
+      </div>
+      <FAQ />
     </div>
   </section>
 </BaseLayout>

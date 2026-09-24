@@ -1,0 +1,31 @@
+---
+import { sitePath } from "../utils/paths";
+import Arrow from "./Arrow.astro";
+
+interface Props {
+  title?: string;
+  text?: string;
+  href?: string;
+  label?: string;
+}
+
+const {
+  title = "Your next chapter starts here.",
+  text = "Explore the teams, follow your interests, and find your place in Cyber Flyers.",
+  href = "/get-involved/",
+  label = "Get involved",
+} = Astro.props;
+---
+
+<section class="closing-cta compact-cta">
+  <div class="container">
+    <div>
+      <h2>{title}</h2>
+      <a class="button button-navy" href={sitePath(href)}>
+        {label}
+        <Arrow diagonal />
+      </a>
+    </div>
+    <p>{text}</p>
+  </div>
+</section>

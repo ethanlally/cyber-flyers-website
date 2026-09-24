@@ -1,26 +1,23 @@
 ---
 import { sitePath } from "../utils/paths";
 import "../styles/global.css";
-import { academicYear } from "../data/content";
-
+import Arrow from "../components/Arrow.astro";
+const navigation = [
+  { href: "/", label: "Home" },
+  { href: "/about/", label: "About" },
+  { href: "/teams/", label: "Teams" },
+  { href: "/programs/", label: "Programs & Research" },
+  { href: "/impact/", label: "Impact & Reports" },
+  { href: "/resources/", label: "Resources" },
+];
 interface Props {
   title: string;
   description?: string;
 }
-
 const {
   title,
-  description = "Student-led cybersecurity education, training, and outreach at the University of Dayton. Meet Cyber Flyers and explore our work.",
+  description = "Cyber Flyers is a student-led cybersecurity community at the University of Dayton. Explore our teams, practical learning, outreach, and research.",
 } = Astro.props;
-const navigation = [
-  ["/", "Home"],
-  ["/about/", "About"],
-  ["/teams/", "Teams"],
-  ["/programs/", "Programs & Research"],
-  ["/impact/", "Impact & Reports"],
-  ["/resources/", "Resources"],
-  ["/get-involved/", "Get Involved"],
-];
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isCurrent = (path: string) =>
   currentPath === (sitePath(path).replace(/\/$/, "") || "/");
@@ -30,28 +27,24 @@ const isCurrent = (path: string) =>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#102c40" />
-    <link
-      rel="preload"
-      href={sitePath("/fonts/work-sans-latin-wght-normal.woff2")}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href={sitePath("/fonts/source-serif-4-latin-wght-normal.woff2")}
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    <meta name="theme-color" content="#141B4D" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
     <link
       rel="icon"
-      href={sitePath("/images/cyber-flyers-favicon.png")}
       type="image/png"
       sizes="64x64"
+      href={sitePath("/images/cyber-flyers-favicon.png")}
+    />
+    <link
+      rel="preload"
+      href={sitePath("/fonts/league-gothic-latin.woff2")}
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <title>{title === 'Cyber Flyers' ? 'Cyber Flyers | University of Dayton' : `${title} | Cyber Flyers`}</title>
   </head>
@@ -59,15 +52,21 @@ const isCurrent = (path: string) =>
     <a class="skip-link" href="#main">
       Skip to content
     </a>
-    <div class="affiliation">
+    <div class="affiliation-bar">
       <div class="container affiliation-inner">
-        <span>University of Dayton</span>
-        <a href="https://udayton.edu/centers/cybersecurity/">CCDI</a>
+        <span>STUDENT LED. COMMUNITY FOCUSED.</span>
+        <a
+          href="https://udayton.edu/centers/cybersecurity/initiatives.php#cyber-flyers"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          University of Dayton <span aria-hidden="true">↗</span>
+        </a>
       </div>
     </div>
     <header class="site-header">
       <div class="container header-inner">
-        <a href={sitePath("/")} class="brand" aria-label="Cyber Flyers home">
+        <a class="brand" href={sitePath("/")} aria-label="Cyber Flyers home">
           <img
             src={sitePath("/images/cyber-flyers-logo.png")}
             width="1200"
@@ -75,67 +74,116 @@ const isCurrent = (path: string) =>
             alt="Cyber Flyers"
           />
         </a>
-        <nav class="desktop-nav" aria-label="Main navigation">
-          {navigation.map(([href, label]) => (
+        <button
+          class="menu-toggle"
+          hidden
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-navigation"
+        >
+          <span>Menu</span>
+          <span class="menu-lines" aria-hidden="true"></span>
+        </button>
+        <nav id="primary-navigation" aria-label="Main navigation">
+          {navigation.map((item) => (
             <a
-              href={sitePath(href)}
-              aria-current={isCurrent(href) ? "page" : undefined}
+              href={sitePath(item.href)}
+              class:list={{ "is-active": isCurrent(item.href) }}
+              aria-current={isCurrent(item.href) ? "page" : undefined}
             >
-              {label}
+              {item.label}
             </a>
           ))}
+          <a
+            class:list={[
+              "button button-red header-cta",
+              { "is-active": isCurrent("/get-involved/") },
+            ]}
+            href={sitePath("/get-involved/")}
+            aria-current={isCurrent("/get-involved/") ? "page" : undefined}
+          >
+            Get involved <Arrow diagonal />
+          </a>
         </nav>
-        <details class="mobile-menu">
-          <summary>Menu</summary>
-          <nav aria-label="Mobile navigation">
-            {navigation.map(([href, label]) => (
-              <a
-                href={sitePath(href)}
-                aria-current={isCurrent(href) ? "page" : undefined}
-              >
-                {label}
-              </a>
-            ))}
-          </nav>
-        </details>
       </div>
     </header>
     <main id="main" tabindex="-1">
       <slot />
     </main>
     <footer class="site-footer">
-      <div class="container footer-grid">
-        <div>
-          <a class="footer-brand" href={sitePath("/")}>
-            Cyber Flyers
-          </a>
-          <p class="small">
-            A joint initiative of CCDI and UDit
-            <br />
-            University of Dayton · Dayton, Ohio
-          </p>
-        </div>
-        <div>
-          <h2>Explore</h2>
-          <a href={sitePath("/teams/")}>Our teams</a>
-          <a href={sitePath("/programs/")}>Programs & research</a>
-          <a href={sitePath("/impact/")}>Impact & reports</a>
-        </div>
-        <div>
-          <h2>Connect</h2>
-          <a href={sitePath("/get-involved/")}>Get involved</a>
-          <a href="https://cf.therangerpost.com/">Cyber Flyers blog</a>
-          <a href="https://udayton.edu/centers/cybersecurity/initiatives.php#cyber-flyers">
-            Cyber Flyers at UD
+      <div class="container">
+        <div class="footer-top">
+          <div>
+            <a class="footer-wordmark" href={sitePath("/")}>
+              CYBER FLYERS<span aria-hidden="true">↗</span>
+            </a>
+            <p>
+              A stronger cyber community.
+              <br />
+              Built together.
+            </p>
+          </div>
+          <a class="footer-cta" href={sitePath("/get-involved/")}>
+            Find your place.
+            <Arrow diagonal />
           </a>
         </div>
-      </div>
-      <div class="container footer-bottom">
-        <span>AY {academicYear} · Logo by Lexi Niemeyer, VGD & MKT ’27</span>
-        <a href="https://udayton.edu/compliance/privacy-terms/index.php">
-          University privacy & terms
-        </a>
+        <div class="footer-columns">
+          <div class="footer-about">
+            <span class="eyebrow">UNIVERSITY OF DAYTON</span>
+            <p>
+              A student-led initiative supported by the Center for Cybersecurity
+              and Data Intelligence and UDit.
+            </p>
+            <p>In collaboration with the Texas Cyber Range at Texas A&amp;M.</p>
+          </div>
+          <div>
+            <h2>Discover</h2>
+            <a href={sitePath("/about/")}>Our story</a>
+            <a href={sitePath("/teams/")}>Our teams</a>
+            <a href={sitePath("/programs/")}>Programs & research</a>
+            <a href={sitePath("/impact/")}>Impact & reports</a>
+          </div>
+          <div>
+            <h2>Explore</h2>
+            <a href={sitePath("/programs/")}>Current work</a>
+            <a href={sitePath("/resources/")}>Resource library</a>
+            <a href={sitePath("/resources/#learning")}>Student resources</a>
+            <a href={sitePath("/programs/#outreach")}>Campus outreach</a>
+          </div>
+          <div>
+            <h2>Connect</h2>
+            <a href={sitePath("/get-involved/#students")}>For students</a>
+            <a href={sitePath("/get-involved/#partners")}>For partners</a>
+            <a
+              href="https://cf.therangerpost.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              The Cyber Flyers blog ↗
+            </a>
+            <span class="footer-muted">Contact information coming soon.</span>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>
+            © {new Date().getFullYear()} Cyber Flyers · University of Dayton
+          </span>
+          <span>Logo by Lexi Niemeyer, VGD & MKT ’27</span>
+          <a href="https://udayton.edu/compliance/privacy-terms/index.php">
+            Privacy & terms ↗
+          </a>
+          <button
+            class="motion-toggle"
+            hidden
+            type="button"
+            aria-pressed="false"
+          >
+            Pause motion <span aria-hidden="true">Ⅱ</span>
+          </button>
+        </div>
       </div>
     </footer>
+    <script src="../scripts/site.ts"></script>
   </body>
 </html>

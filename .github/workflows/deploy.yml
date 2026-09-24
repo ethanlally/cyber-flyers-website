@@ -22,7 +22,7 @@ jobs:
       contents: read
       pages: read
     env:
-      ASTRO_TELEMETRY_DISABLED: '1'
+      ASTRO_TELEMETRY_DISABLED: "1"
     steps:
       - name: Check out source
         uses: actions/checkout@v7
@@ -32,7 +32,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v7
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
 
       - name: Read GitHub Pages configuration
