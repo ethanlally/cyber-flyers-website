@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SectionNav from "../components/SectionNav.astro";
+import ClosingCTA from "../components/ClosingCTA.astro";
+import Arrow from "../components/Arrow.astro";
+import { teams } from "../data/content";
+import { careerPaths, transferableSkills } from "../data/opportunities";
+import { sitePath } from "../utils/paths";
+---
+
+<BaseLayout
+  title="Career & Professional Development"
+  description="Explore skills you can practice through Cyber Flyers and their connections to professional paths."
+>
+  <PageHeader
+    eyebrow="YOUR FUTURE"
+    title="Build experience."
+    accent="Open possibilities."
+    description="Explore the skills you can practice through Cyber Flyers and how they connect to professional paths, within and beyond cybersecurity."
+  />
+  <SectionNav section="involvement" />
+  <section class="section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">PRACTICE WITH PURPOSE</span>
+          <h2>Three teams. Many possible futures.</h2>
+        </div>
+      </div>
+      <p class="content-intro">
+        Connect what you enjoy with skills you want to develop. These pathways
+        are examples to explore—not guarantees of certifications, internships,
+        or employment.
+      </p>
+      <div class="content-grid">
+        {careerPaths.map((path) => {
+          const team = teams.find((team) => team.id === path.teamId)!;
+          return (
+            <article class="content-card" data-reveal>
+              <span class="eyebrow">{team.acronym}</span>
+              <h3>{team.name}</h3>
+              <h4 class="small-label">Skills to practice</h4>
+              <ul class="line-list">
+                {path.skills.map((skill) => (
+                  <li>{skill}</li>
+                ))}
+              </ul>
+              <h4 class="small-label">Possible career connections</h4>
+              <p>{path.connections}</p>
+              <a class="text-link" href={sitePath(`/teams/#${team.id}`)}>
+                Meet {team.acronym}
+                <Arrow diagonal />
+              </a>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+  <section class="section pale-section">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ACROSS EVERY TEAM</span>
+          <h2>Skills that travel with you.</h2>
+        </div>
+      </div>
+      <div class="content-grid content-grid-two">
+        {transferableSkills.map((skill) => (
+          <article class="content-card">
+            <h3>{skill.title}</h3>
+            <p>{skill.description}</p>
+          </article>
+        ))}
+      </div>
+      <a class="text-link content-next" href={sitePath("/projects/")}>
+        See project examples
+        <Arrow diagonal />
+      </a>
+    </div>
+  </section>
+  <ClosingCTA href="/get-involved/#find-your-place" label="Find your place" />
+</BaseLayout>

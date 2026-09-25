@@ -2,6 +2,8 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import SectionNav from "../components/SectionNav.astro";
+import Arrow from "../components/Arrow.astro";
 import TeamFinder from "../components/TeamFinder.astro";
 import FAQ from "../components/FAQ.astro";
 ---
@@ -15,6 +17,7 @@ import FAQ from "../components/FAQ.astro";
     title="Get involved."
     description="Information for students interested in Cyber Flyers and organizations interested in collaborating."
   />
+  <SectionNav section="involvement" />
   <section class="section">
     <div class="container involvement-grid">
       <article>
@@ -51,7 +54,7 @@ import FAQ from "../components/FAQ.astro";
       </article>
     </div>
   </section>
-  <section class="section finder-section">
+  <section class="section finder-section" id="find-your-place">
     <div class="container">
       <div class="section-heading">
         <div>
@@ -93,6 +96,27 @@ import FAQ from "../components/FAQ.astro";
           </p>
           <p class="availability">Partner contact information coming soon.</p>
         </article>
+        <article data-reveal>
+          <h3>Mentoring and professional opportunities</h3>
+          <p>
+            Potential collaborations include mentoring, site visits, shadowing,
+            and sharing internships or project opportunities through the
+            appropriate University process.
+          </p>
+          <p class="availability">
+            Specific opportunities will be shared when approved.
+          </p>
+        </article>
+        <article data-reveal>
+          <h3>Event and program support</h3>
+          <p>
+            Future sponsorship or program-support opportunities may be added
+            following University and Cyber Flyers leadership approval.
+          </p>
+          <p class="availability">
+            Sponsorship information is not yet available.
+          </p>
+        </article>
       </div>
     </div>
   </section>
@@ -105,6 +129,10 @@ import FAQ from "../components/FAQ.astro";
         </div>
       </div>
       <FAQ />
+      <a class="text-link content-next" href={sitePath("/faq/")}>
+        All frequently asked questions
+        <Arrow diagonal />
+      </a>
     </div>
   </section>
 </BaseLayout>

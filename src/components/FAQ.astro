@@ -1,27 +1,17 @@
 ---
-const faqs = [
-  {
-    question: "Is Cyber Flyers only for technical majors?",
-    answer:
-      "Cyber Flyers includes students from technical and nontechnical majors, working across communication, training, and research.",
-  },
-  {
-    question: "Can interests overlap across teams?",
-    answer: "Yes. Some current members contribute to more than one team.",
-  },
-  {
-    question: "How do I join?",
-    answer:
-      "Student joining information will be posted here when it is available.",
-  },
-];
+import { commonFAQs, type FAQItem } from "../data/opportunities";
+import { sitePath } from "../utils/paths";
+interface Props {
+  items?: FAQItem[];
+}
+const { items = commonFAQs } = Astro.props;
 ---
 
 <div class="faq-list">
-  {faqs.map((faq, i) => (
+  {items.map((faq, i) => (
     <details>
       <summary>
-        <span class="faq-number">0{i + 1}</span>
+        <span class="faq-number">{String(i + 1).padStart(2, "0")}</span>
         {faq.question}
         <span class="faq-toggle" aria-hidden="true">
           +
@@ -29,6 +19,11 @@ const faqs = [
       </summary>
       <div class="faq-answer">
         <p>{faq.answer}</p>
+        {faq.href && (
+          <a class="text-link" href={sitePath(faq.href)}>
+            {faq.label}
+          </a>
+        )}
       </div>
     </details>
   ))}

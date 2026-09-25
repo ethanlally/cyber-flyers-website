@@ -4,8 +4,68 @@ document.documentElement.classList.add("js");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const menuButton = document.querySelector<HTMLButtonElement>(".menu-toggle");
 const primaryNav = document.querySelector<HTMLElement>("#primary-navigation");
+const hoverNavigation = window.matchMedia(
+  "(min-width: 1081px) and (hover: hover) and (pointer: fine)",
+);
+const dropdowns = Array.from(
+  document.querySelectorAll<HTMLDetailsElement>(".nav-dropdown"),
+);
+function syncDropdownState(dropdown: HTMLDetailsElement) {
+  const parent = dropdown.closest(".nav-group")?.querySelector(".nav-parent");
+  const submenu = dropdown.querySelector(".nav-submenu");
+  if (hoverNavigation.matches && submenu?.id) {
+    parent?.setAttribute("aria-expanded", String(dropdown.open));
+    parent?.setAttribute("aria-controls", submenu.id);
+  } else {
+    parent?.removeAttribute("aria-expanded");
+    parent?.removeAttribute("aria-controls");
+  }
+}
+function setDropdownOpen(dropdown: HTMLDetailsElement, open: boolean) {
+  dropdown.open = open;
+  syncDropdownState(dropdown);
+}
+function closeDropdowns(except?: HTMLDetailsElement) {
+  dropdowns.forEach((dropdown) => {
+    if (dropdown !== except) setDropdownOpen(dropdown, false);
+  });
+}
+dropdowns.forEach((dropdown) => {
+  const group = dropdown.closest<HTMLElement>(".nav-group");
+  syncDropdownState(dropdown);
+  dropdown.addEventListener("toggle", () => syncDropdownState(dropdown));
+  const openOnHoverOrFocus = () => {
+    if (!hoverNavigation.matches) return;
+    closeDropdowns(dropdown);
+    setDropdownOpen(dropdown, true);
+  };
+  group?.addEventListener("mouseenter", openOnHoverOrFocus);
+  group?.addEventListener("mouseleave", () => {
+    if (hoverNavigation.matches && !group.contains(document.activeElement))
+      setDropdownOpen(dropdown, false);
+  });
+  group?.addEventListener("focusin", openOnHoverOrFocus);
+  group
+    ?.querySelector<HTMLAnchorElement>(".nav-parent")
+    ?.addEventListener("keydown", (event) => {
+      if (!hoverNavigation.matches || event.key !== "ArrowDown") return;
+      event.preventDefault();
+      openOnHoverOrFocus();
+      dropdown.querySelector<HTMLAnchorElement>(".nav-submenu a")?.focus();
+    });
+  dropdown
+    .querySelector("summary")
+    ?.addEventListener("click", () => closeDropdowns(dropdown));
+  group?.addEventListener("focusout", (event) => {
+    const next = event.relatedTarget;
+    if (!(next instanceof Node) || !group.contains(next)) {
+      setDropdownOpen(dropdown, false);
+    }
+  });
+});
 if (menuButton) menuButton.hidden = false;
 function closeMenu() {
+  closeDropdowns();
   menuButton?.setAttribute("aria-expanded", "false");
   primaryNav?.classList.remove("is-open");
 }
@@ -13,12 +73,22 @@ menuButton?.addEventListener("click", () => {
   const open = menuButton.getAttribute("aria-expanded") !== "true";
   menuButton.setAttribute("aria-expanded", String(open));
   primaryNav?.classList.toggle("is-open", open);
+  if (!open) closeDropdowns();
 });
 document.addEventListener("keydown", (event) => {
-  if (
-    event.key === "Escape" &&
-    menuButton?.getAttribute("aria-expanded") === "true"
-  ) {
+  if (event.key !== "Escape") return;
+  const openDropdown = dropdowns.find((dropdown) => dropdown.open);
+  if (openDropdown) {
+    const trigger = hoverNavigation.matches
+      ? openDropdown
+          .closest(".nav-group")
+          ?.querySelector<HTMLElement>(".nav-parent")
+      : openDropdown.querySelector("summary");
+    trigger?.focus();
+    setDropdownOpen(openDropdown, false);
+    return;
+  }
+  if (menuButton?.getAttribute("aria-expanded") === "true") {
     closeMenu();
     menuButton.focus();
   }
@@ -41,9 +111,8 @@ document
       closeMenu();
     }
   });
-window.matchMedia("(min-width: 1081px)").addEventListener("change", (event) => {
-  if (event.matches) closeMenu();
-});
+window.matchMedia("(min-width: 1081px)").addEventListener("change", closeMenu);
+hoverNavigation.addEventListener("change", closeMenu);
 let userPaused = false;
 try {
   userPaused = localStorage.getItem("cf-motion-paused") === "true";
@@ -96,8 +165,9 @@ document
     const buttons = group.querySelectorAll<HTMLButtonElement>("[data-filter]");
     const items = group.querySelectorAll<HTMLElement>("[data-category]");
     const search = group.querySelector<HTMLInputElement>("[data-search]");
+    const noun = group.dataset.filterNoun || "resource";
     group
-      .querySelector<HTMLElement>(".resource-toolbar")
+      .querySelector<HTMLElement>("[data-filter-controls]")
       ?.removeAttribute("hidden");
     let active = "all";
     const apply = () => {
@@ -120,8 +190,8 @@ document
       const status = group.querySelector<HTMLElement>("[data-filter-status]");
       if (status)
         status.textContent = count
-          ? `${count} ${count === 1 ? "resource" : "resources"} found`
-          : "No resources match. Try another topic or search.";
+          ? `${count} ${noun}${count === 1 ? "" : "s"} found`
+          : `No ${noun}s match. Try another topic or search.`;
     };
     buttons.forEach((button) =>
       button.addEventListener("click", () => {

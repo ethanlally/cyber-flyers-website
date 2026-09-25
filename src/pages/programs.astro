@@ -2,6 +2,7 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import SectionNav from "../components/SectionNav.astro";
 import MediaPlaceholder from "../components/MediaPlaceholder.astro";
 import Arrow from "../components/Arrow.astro";
 import { academicYear, programs, teams } from "../data/content";
@@ -17,6 +18,7 @@ import { academicYear, programs, teams } from "../data/content";
     accent="research."
     description="The following projects guide the teams' work this academic year."
   />
+  <SectionNav section="work" />
   <nav class="container subnav program-subnav" aria-label="Jump to program">
     {programs.map((program) => (
       <a href={`#${program.id}`}>
