@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SectionNav from "../components/SectionNav.astro";
+import Arrow from "../components/Arrow.astro";
+import { sitePath } from "../utils/paths";
+---
+
+<BaseLayout
+  title="Events"
+  description="Cyber Flyers events, campus outreach, and opportunities to learn together."
+>
+  <PageHeader
+    eyebrow="ENGAGE / EVENTS"
+    title="Learn together."
+    accent="Show up curious."
+    description="Find Cyber Flyers workshops, guest speakers, campus tabling, and other opportunities to connect."
+  />
+  <SectionNav section="work" />
+  <section class="section">
+    <div class="container editorial-split">
+      <div>
+        <span class="eyebrow">UPCOMING</span>
+        <h2>What’s next.</h2>
+      </div>
+      <div class="prose">
+        <p class="lead">Event details coming soon.</p>
+        <p>
+          Confirmed dates, locations, and registration information will be
+          posted here when available.
+        </p>
+        <a class="text-link" href={sitePath("/get-involved/#students")}>
+          Student participation
+          <Arrow diagonal />
+        </a>
+      </div>
+    </div>
+  </section>
+  <section class="section pale-section">
+    <div class="container editorial-split">
+      <div>
+        <span class="eyebrow">PAST ENGAGEMENT</span>
+        <h2>Our work on campus.</h2>
+      </div>
+      <div class="prose">
+        <p>
+          Previous activities include Up the Orgs, tabling in Kennedy Union, and
+          guest speakers sharing professional experience with students.
+        </p>
+        <div class="stack-links">
+          <a class="text-link" href={sitePath("/impact/#highlights")}>
+            2025–2026 highlights
+            <Arrow diagonal />
+          </a>
+          <a class="text-link" href={sitePath("/resources/")}>
+            Keep learning
+            <Arrow diagonal />
+          </a>
+          <a class="text-link" href={sitePath("/get-involved/#partners")}>
+            Collaborate on an event
+            <Arrow diagonal />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
