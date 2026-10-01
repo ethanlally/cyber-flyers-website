@@ -1,0 +1,44 @@
+---
+import { sitePath } from "../utils/paths";
+import { sectionLinks } from "../data/navigation";
+interface Props {
+  section: keyof typeof sectionLinks;
+}
+const path = Astro.url.pathname.replace(/\/$/, "");
+---
+
+<nav class="container section-nav" aria-label="Related pages">
+  {sectionLinks[Astro.props.section].map((item) => (
+    <a
+      href={sitePath(item.href)}
+      aria-current={
+        path === sitePath(item.href).replace(/\/$/, "") ? "page" : undefined
+      }
+    >
+      {item.label}
+    </a>
+  ))}
+</nav>
+
+<style>
+  .section-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 28px;
+    padding-block: 18px;
+    border-bottom: 1px solid var(--rule);
+  }
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  a:hover,
+  a[aria-current] {
+    color: var(--red);
+    text-decoration: underline;
+    text-underline-offset: 6px;
+  }
+</style>

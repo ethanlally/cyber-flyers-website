@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/PageHeader.astro";
+import SectionNav from "../components/SectionNav.astro";
+import Arrow from "../components/Arrow.astro";
+import { projectExamples } from "../data/opportunities";
+import { teams } from "../data/content";
+import { sitePath } from "../utils/paths";
+---
+
+<BaseLayout
+  title="Project Showcase"
+  description="Explore illustrative Cyber Flyers projects in training, research, and campus outreach."
+>
+  <PageHeader
+    eyebrow="OUR WORK / PROJECT SHOWCASE"
+    title="Work worth"
+    accent="showing."
+    description="Explore examples of how Cyber Flyers work can take shape across training, research, and outreach. Published project highlights will be added as they become available."
+  />
+  <SectionNav section="work" />
+  <section class="section">
+    <div class="container" data-filter-group data-filter-noun="project">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">ILLUSTRATIVE EXAMPLES</span>
+          <h2>From a question to a deliverable.</h2>
+        </div>
+      </div>
+      <p class="content-intro">
+        These examples describe possible project formats, not completed projects
+        or reported results. See{" "}
+        <a href={sitePath("/programs/")}>Programs &amp; Research</a> for the
+        teams’ current priorities.
+      </p>
+      <div class="resource-toolbar" data-filter-controls hidden>
+        <div class="filter-buttons" role="group" aria-label="Filter projects">
+          <button
+            type="button"
+            class="selected"
+            aria-pressed="true"
+            data-filter="all"
+          >
+            All projects
+          </button>
+          {projectExamples.map((project) => (
+            <button
+              type="button"
+              aria-pressed="false"
+              data-filter={project.category}
+            >
+              {project.label}
+            </button>
+          ))}
+        </div>
+      </div>
+      <p class="filter-status" role="status" data-filter-status>
+        {projectExamples.length} projects
+      </p>
+      <div class="content-grid">
+        {projectExamples.map((project) => (
+          <article class="content-card" data-category={project.category}>
+            <span class="eyebrow">{project.label} / Example</span>
+            <h3>{project.title}</h3>
+            <a class="text-link" href={sitePath(`/teams/#${project.teamId}`)}>
+              {teams.find((team) => team.id === project.teamId)!.acronym}
+              <Arrow diagonal />
+            </a>
+            <dl class="project-summary">
+              <dt>Problem</dt>
+              <dd>{project.problem}</dd>
+              <dt>Approach</dt>
+              <dd>{project.approach}</dd>
+              <dt>Possible deliverable</dt>
+              <dd>{project.deliverable}</dd>
+            </dl>
+            <a
+              class="text-link"
+              href={sitePath(`/programs/#${project.programId}`)}
+            >
+              Related program
+              <Arrow diagonal />
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

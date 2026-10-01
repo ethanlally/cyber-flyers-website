@@ -2,13 +2,19 @@
 import { sitePath } from "../utils/paths";
 import "../styles/global.css";
 import Arrow from "../components/Arrow.astro";
+import NavDropdown from "../components/NavDropdown.astro";
+import { sectionLinks } from "../data/navigation";
 const navigation = [
   { href: "/", label: "Home" },
   { href: "/about/", label: "About" },
   { href: "/teams/", label: "Teams" },
-  { href: "/programs/", label: "Programs & Research" },
+  {
+    href: "/programs/",
+    label: "Programs & Research",
+    links: sectionLinks.work,
+  },
   { href: "/impact/", label: "Impact & Reports" },
-  { href: "/resources/", label: "Resources" },
+  { href: "/resources/", label: "Resources", links: sectionLinks.resources },
 ];
 interface Props {
   title: string;
@@ -85,25 +91,29 @@ const isCurrent = (path: string) =>
           <span class="menu-lines" aria-hidden="true"></span>
         </button>
         <nav id="primary-navigation" aria-label="Main navigation">
-          {navigation.map((item) => (
-            <a
-              href={sitePath(item.href)}
-              class:list={{ "is-active": isCurrent(item.href) }}
-              aria-current={isCurrent(item.href) ? "page" : undefined}
-            >
-              {item.label}
-            </a>
-          ))}
-          <a
-            class:list={[
-              "button button-red header-cta",
-              { "is-active": isCurrent("/get-involved/") },
-            ]}
-            href={sitePath("/get-involved/")}
-            aria-current={isCurrent("/get-involved/") ? "page" : undefined}
-          >
-            Get involved <Arrow diagonal />
-          </a>
+          {navigation.map((item) =>
+            item.links ? (
+              <NavDropdown
+                href={item.href}
+                label={item.label}
+                links={item.links}
+              />
+            ) : (
+              <a
+                href={sitePath(item.href)}
+                class:list={{ "is-active": isCurrent(item.href) }}
+                aria-current={isCurrent(item.href) ? "page" : undefined}
+              >
+                {item.label}
+              </a>
+            ),
+          )}
+          <NavDropdown
+            href="/get-involved/"
+            label="Get involved"
+            links={sectionLinks.involvement}
+            callToAction
+          />
         </nav>
       </div>
     </header>
@@ -123,7 +133,10 @@ const isCurrent = (path: string) =>
               Built together.
             </p>
           </div>
-          <a class="footer-cta" href={sitePath("/get-involved/")}>
+          <a
+            class="footer-cta"
+            href={sitePath("/get-involved/#find-your-place")}
+          >
             Find your place.
             <Arrow diagonal />
           </a>
@@ -143,18 +156,23 @@ const isCurrent = (path: string) =>
             <a href={sitePath("/teams/")}>Our teams</a>
             <a href={sitePath("/programs/")}>Programs & research</a>
             <a href={sitePath("/impact/")}>Impact & reports</a>
+            <a href={sitePath("/impact/#member-success")}>Members & alumni</a>
           </div>
           <div>
             <h2>Explore</h2>
-            <a href={sitePath("/programs/")}>Current work</a>
+            <a href={sitePath("/projects/")}>Project showcase</a>
+            <a href={sitePath("/events/")}>Events</a>
             <a href={sitePath("/resources/")}>Resource library</a>
             <a href={sitePath("/resources/#learning")}>Student resources</a>
+            <a href={sitePath("/start-here/")}>Start here in cybersecurity</a>
             <a href={sitePath("/programs/#outreach")}>Campus outreach</a>
           </div>
           <div>
             <h2>Connect</h2>
             <a href={sitePath("/get-involved/#students")}>For students</a>
             <a href={sitePath("/get-involved/#partners")}>For partners</a>
+            <a href={sitePath("/career/")}>Career connections</a>
+            <a href={sitePath("/faq/")}>Frequently asked questions</a>
             <a
               href="https://cf.therangerpost.com/"
               target="_blank"

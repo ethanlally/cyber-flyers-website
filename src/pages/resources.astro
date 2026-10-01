@@ -2,6 +2,7 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
+import SectionNav from "../components/SectionNav.astro";
 import Arrow from "../components/Arrow.astro";
 import { resourceGroups } from "../data/content";
 const count = resourceGroups.reduce(
@@ -19,9 +20,10 @@ const count = resourceGroups.reduce(
     title="Resources."
     description="Articles, learning material, and reference guides from Cyber Flyers and our partners."
   />
+  <SectionNav section="resources" />
   <section class="section">
     <div class="container" data-filter-group>
-      <div class="resource-toolbar" hidden>
+      <div class="resource-toolbar" data-filter-controls hidden>
         <div class="filter-buttons" role="group" aria-label="Filter resources">
           <button
             type="button"
