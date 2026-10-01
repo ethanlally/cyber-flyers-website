@@ -1,13 +1,14 @@
 ---
 import { sitePath } from "../utils/paths";
 import { teams } from "../data/content";
+import Icon from "./Icon.astro";
 const interests = [
-  { label: "Creating & connecting", icon: "↗", team: "cmac" },
-  { label: "Hands-on security", icon: "⌘", team: "psat" },
-  { label: "Research & discovery", icon: "⌕", team: "ctmr" },
-  { label: "Helping others learn", icon: "✳", team: "teaching" },
-  { label: "A little of everything", icon: "+", team: "all" },
-];
+  { label: "Creating & connecting", icon: "message", team: "cmac" },
+  { label: "Hands-on security", icon: "command", team: "psat" },
+  { label: "Research & discovery", icon: "search", team: "ctmr" },
+  { label: "Helping others learn", icon: "asterisk", team: "teaching" },
+  { label: "A little of everything", icon: "plus", team: "all" },
+] as const;
 ---
 
 <div class="team-finder" data-finder>
@@ -24,9 +25,13 @@ const interests = [
         aria-pressed={i === 0 ? "true" : "false"}
         data-interest={interest.team}
       >
-        <span aria-hidden="true">{interest.icon}</span>
+        <span aria-hidden="true">
+          <Icon name={interest.icon} />
+        </span>
         {interest.label}
-        <span aria-hidden="true">↗</span>
+        <span class="interest-selection" aria-hidden="true">
+          <Icon name="check" />
+        </span>
       </button>
     ))}
   </div>
@@ -38,7 +43,7 @@ const interests = [
         <p>{team.summary}</p>
         <a class="text-link" href={sitePath(`/teams/#${team.id}`)}>
           Meet {team.acronym}
-          <span aria-hidden="true">↗</span>
+          <Icon name="arrow-right" />
         </a>
       </article>
     ))}
@@ -51,7 +56,7 @@ const interests = [
         teams.
       </p>
       <a class="text-link" href={sitePath("/teams/")}>
-        Explore both teams <span aria-hidden="true">↗</span>
+        Explore both teams <Icon name="arrow-right" />
       </a>
     </article>
     <article class="finder-result" data-result="all" hidden>
@@ -62,7 +67,7 @@ const interests = [
         all figured out to find an area you’d like to grow in.
       </p>
       <a class="text-link" href={sitePath("/teams/")}>
-        Explore all teams <span aria-hidden="true">↗</span>
+        Explore all teams <Icon name="arrow-right" />
       </a>
     </article>
   </div>

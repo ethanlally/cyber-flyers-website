@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Props {
   diagonal?: boolean;
 }
@@ -6,15 +8,8 @@ interface Props {
 const { diagonal = false } = Astro.props;
 ---
 
-<svg
-  class="arrow-icon"
-  width="20"
-  height="20"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="1.6"
-  aria-hidden="true"
->
-  <path d={diagonal ? "M6 18 18 6M6 6h12v12" : "M4 12h16m-6-6 6 6-6 6"} />
-</svg>
+<Icon
+  name={diagonal ? "arrow-up-right" : "arrow-right"}
+  class={diagonal ? "arrow-icon arrow-icon-diagonal" : "arrow-icon"}
+  size={20}
+/>

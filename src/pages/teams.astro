@@ -26,7 +26,6 @@ const executive = memberById(executiveDirector);
     {teams.map((team, i) => (
       <a href={`#${team.id}`}>
         0{i + 1} / {team.acronym}
-        <Arrow diagonal />
       </a>
     ))}
   </nav>
@@ -75,7 +74,7 @@ const executive = memberById(executiveDirector);
                   {team.programIds.map((id) => (
                     <a class="text-link" href={sitePath(`/programs/#${id}`)}>
                       {programs.find((p) => p.id === id)!.name}
-                      <Arrow diagonal />
+                      <Arrow />
                     </a>
                   ))}
                 </div>

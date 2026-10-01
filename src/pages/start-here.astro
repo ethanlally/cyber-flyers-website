@@ -4,7 +4,7 @@ import PageHeader from "../components/PageHeader.astro";
 import SectionNav from "../components/SectionNav.astro";
 import Arrow from "../components/Arrow.astro";
 import { learningSteps } from "../data/opportunities";
-import { sitePath } from "../utils/paths";
+import { isExternalLink, sitePath } from "../utils/paths";
 ---
 
 <BaseLayout
@@ -34,7 +34,7 @@ import { sitePath } from "../utils/paths";
             <p>{step.description}</p>
             <a class="text-link" href={sitePath(step.href)}>
               {step.label}
-              <Arrow diagonal />
+              <Arrow diagonal={isExternalLink(step.href)} />
             </a>
           </li>
         ))}
@@ -59,11 +59,11 @@ import { sitePath } from "../utils/paths";
             href={sitePath("/get-involved/#find-your-place")}
           >
             Find your place
-            <Arrow diagonal />
+            <Arrow />
           </a>
           <a class="text-link" href={sitePath("/faq/")}>
             Read the FAQ
-            <Arrow diagonal />
+            <Arrow />
           </a>
         </div>
       </div>

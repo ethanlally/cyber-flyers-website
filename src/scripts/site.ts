@@ -125,11 +125,23 @@ function setMotion(value: boolean) {
   if (motionButton) {
     motionButton.setAttribute("aria-pressed", String(paused));
     motionButton.disabled = reducedMotion.matches;
-    motionButton.innerHTML = reducedMotion.matches
-      ? "Reduced motion enabled"
-      : paused
-        ? 'Resume motion <span aria-hidden="true">▷</span>'
-        : 'Pause motion <span aria-hidden="true">Ⅱ</span>';
+    const label = motionButton.querySelector<HTMLElement>(
+      "[data-motion-label]",
+    );
+    const pauseIcon = motionButton.querySelector<HTMLElement>(
+      "[data-motion-pause]",
+    );
+    const playIcon =
+      motionButton.querySelector<HTMLElement>("[data-motion-play]");
+    if (label) {
+      label.textContent = reducedMotion.matches
+        ? "Reduced motion enabled"
+        : paused
+          ? "Resume motion"
+          : "Pause motion";
+    }
+    if (pauseIcon) pauseIcon.hidden = paused;
+    if (playIcon) playIcon.hidden = !paused || reducedMotion.matches;
   }
 }
 if (motionButton) motionButton.hidden = false;
