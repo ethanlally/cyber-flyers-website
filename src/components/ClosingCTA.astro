@@ -1,5 +1,5 @@
 ---
-import { sitePath } from "../utils/paths";
+import { isExternalLink, sitePath } from "../utils/paths";
 import Arrow from "./Arrow.astro";
 
 interface Props {
@@ -23,7 +23,7 @@ const {
       <h2>{title}</h2>
       <a class="button button-navy" href={sitePath(href)}>
         {label}
-        <Arrow diagonal />
+        <Arrow diagonal={isExternalLink(href)} />
       </a>
     </div>
     <p>{text}</p>

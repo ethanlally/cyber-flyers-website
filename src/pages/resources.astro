@@ -1,9 +1,10 @@
 ---
-import { sitePath } from "../utils/paths";
+import { isExternalLink, sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import SectionNav from "../components/SectionNav.astro";
 import Arrow from "../components/Arrow.astro";
+import Icon from "../components/Icon.astro";
 import { resourceGroups } from "../data/content";
 const count = resourceGroups.reduce(
   (total, group) => total + group.items.length,
@@ -42,7 +43,9 @@ const count = resourceGroups.reduce(
         <label class="resource-search">
           <span class="sr-only">Search resources</span>
           <input type="search" data-search placeholder="Search resources" />
-          <span aria-hidden="true">⌕</span>
+          <span aria-hidden="true">
+            <Icon name="search" />
+          </span>
         </label>
       </div>
       <p class="filter-status" role="status" data-filter-status>
@@ -70,7 +73,7 @@ const count = resourceGroups.reduce(
               >
                 <div class="resource-card-top">
                   <span class="eyebrow">{group.title}</span>
-                  <Arrow diagonal />
+                  <Arrow diagonal={isExternalLink(item.url)} />
                 </div>
                 <span class="resource-number" aria-hidden="true">
                   0{i + 1}

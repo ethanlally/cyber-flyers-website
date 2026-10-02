@@ -2,6 +2,7 @@
 import { sitePath } from "../utils/paths";
 import "../styles/global.css";
 import Arrow from "../components/Arrow.astro";
+import Icon from "../components/Icon.astro";
 import NavDropdown from "../components/NavDropdown.astro";
 import { sectionLinks } from "../data/navigation";
 const navigation = [
@@ -66,7 +67,7 @@ const isCurrent = (path: string) =>
           target="_blank"
           rel="noopener noreferrer"
         >
-          University of Dayton <span aria-hidden="true">↗</span>
+          University of Dayton <Icon name="arrow-up-right" />
         </a>
       </div>
     </div>
@@ -125,7 +126,7 @@ const isCurrent = (path: string) =>
         <div class="footer-top">
           <div>
             <a class="footer-wordmark" href={sitePath("/")}>
-              CYBER FLYERS<span aria-hidden="true">↗</span>
+              CYBER FLYERS
             </a>
             <p>
               A stronger cyber community.
@@ -138,7 +139,7 @@ const isCurrent = (path: string) =>
             href={sitePath("/get-involved/#find-your-place")}
           >
             Find your place.
-            <Arrow diagonal />
+            <Arrow />
           </a>
         </div>
         <div class="footer-columns">
@@ -178,7 +179,7 @@ const isCurrent = (path: string) =>
               target="_blank"
               rel="noopener noreferrer"
             >
-              The Cyber Flyers blog ↗
+              The Cyber Flyers blog <Icon name="arrow-up-right" />
             </a>
             <span class="footer-muted">Contact information coming soon.</span>
           </div>
@@ -189,7 +190,7 @@ const isCurrent = (path: string) =>
           </span>
           <span>Logo by Lexi Niemeyer, VGD & MKT ’27</span>
           <a href="https://udayton.edu/compliance/privacy-terms/index.php">
-            Privacy & terms ↗
+            Privacy & terms <Icon name="arrow-up-right" />
           </a>
           <button
             class="motion-toggle"
@@ -197,7 +198,13 @@ const isCurrent = (path: string) =>
             type="button"
             aria-pressed="false"
           >
-            Pause motion <span aria-hidden="true">Ⅱ</span>
+            <span data-motion-label>Pause motion</span>
+            <span data-motion-pause>
+              <Icon name="pause" />
+            </span>
+            <span data-motion-play hidden>
+              <Icon name="play" />
+            </span>
           </button>
         </div>
       </div>

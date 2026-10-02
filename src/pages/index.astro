@@ -2,10 +2,12 @@
 import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Arrow from "../components/Arrow.astro";
+import Icon from "../components/Icon.astro";
 import MediaPlaceholder from "../components/MediaPlaceholder.astro";
 import TeamFinder from "../components/TeamFinder.astro";
 import ClosingCTA from "../components/ClosingCTA.astro";
 import { academicYear, members, teams, programs } from "../data/content";
+const teamIcons = ["message", "command", "asterisk"] as const;
 ---
 
 <BaseLayout title="Cyber Flyers">
@@ -31,7 +33,7 @@ import { academicYear, members, teams, programs } from "../data/content";
         </p>
         <div class="hero-actions">
           <a class="button button-red" href={sitePath("/get-involved/")}>
-            Get involved <Arrow diagonal />
+            Get involved <Arrow />
           </a>
           <a class="text-link" href={sitePath("/about/")}>
             About Cyber Flyers <Arrow />
@@ -83,9 +85,6 @@ import { academicYear, members, teams, programs } from "../data/content";
               <span class="tiny-label">BUILT ON CONNECTION</span>
               <p>Stronger, together.</p>
             </div>
-            <span class="hero-art-arrow" aria-hidden="true">
-              ↗
-            </span>
           </div>
         </div>
         <div class="visual-caption">
@@ -98,7 +97,7 @@ import { academicYear, members, teams, programs } from "../data/content";
     </div>
     <div class="container hero-bottom">
       <span>
-        SCROLL TO EXPLORE <span aria-hidden="true">↓</span>
+        SCROLL TO EXPLORE <Icon name="arrow-down" />
       </span>
       <span>ACADEMIC YEAR {academicYear}</span>
     </div>
@@ -134,7 +133,7 @@ import { academicYear, members, teams, programs } from "../data/content";
           <h2 id="teams-title">Our teams.</h2>
         </div>
         <a class="text-link" href={sitePath("/teams/")}>
-          Meet the team <Arrow diagonal />
+          Meet the team <Arrow />
         </a>
       </div>
       <div class="team-card-grid">
@@ -148,10 +147,9 @@ import { academicYear, members, teams, programs } from "../data/content";
               <span class="eyebrow">
                 0{i + 1} / {team.acronym}
               </span>
-              <Arrow diagonal />
             </div>
             <div class="team-symbol" aria-hidden="true">
-              {["↗", "⌘", "✳"][i]}
+              <Icon name={teamIcons[i]} />
             </div>
             <h3>{team.name}</h3>
             <p>{team.summary}</p>
@@ -172,7 +170,7 @@ import { academicYear, members, teams, programs } from "../data/content";
           <h2 id="work-title">Current work.</h2>
         </div>
         <a class="text-link" href={sitePath("/programs/")}>
-          Explore our programs <Arrow diagonal />
+          Explore our programs <Arrow />
         </a>
       </div>
       <div class="program-mini-grid">
@@ -188,7 +186,7 @@ import { academicYear, members, teams, programs } from "../data/content";
             </span>
             <h3>{program.name}</h3>
             <p>{program.summary}</p>
-            <Arrow diagonal />
+            <Arrow />
           </a>
         ))}
       </div>
@@ -249,7 +247,7 @@ import { academicYear, members, teams, programs } from "../data/content";
               IMPACT & REPORTS <span>2025–2026</span>
             </div>
             <h3>
-              2025–2026 highlights <Arrow diagonal />
+              2025–2026 highlights <Arrow />
             </h3>
             <p>
               Last year's activities included campus tabling, guest speakers,

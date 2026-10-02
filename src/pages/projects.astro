@@ -64,7 +64,7 @@ import { sitePath } from "../utils/paths";
             <h3>{project.title}</h3>
             <a class="text-link" href={sitePath(`/teams/#${project.teamId}`)}>
               {teams.find((team) => team.id === project.teamId)!.acronym}
-              <Arrow diagonal />
+              <Arrow />
             </a>
             <dl class="project-summary">
               <dt>Problem</dt>
@@ -79,7 +79,7 @@ import { sitePath } from "../utils/paths";
               href={sitePath(`/programs/#${project.programId}`)}
             >
               Related program
-              <Arrow diagonal />
+              <Arrow />
             </a>
           </article>
         ))}

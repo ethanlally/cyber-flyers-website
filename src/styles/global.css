@@ -136,12 +136,17 @@ h3 + p {
 .eyebrow + h3 {
   margin-top: 20px;
 }
-.arrow-icon {
+.icon {
   flex-shrink: 0;
   vertical-align: middle;
+}
+.arrow-icon {
   transition: transform 0.35s var(--ease);
 }
 a:hover .arrow-icon {
+  transform: translateX(3px);
+}
+a:hover .arrow-icon-diagonal {
   transform: translate(3px, -2px);
 }
 .button {
@@ -550,10 +555,6 @@ a:hover .arrow-icon {
   margin-top: 8px;
   letter-spacing: -0.03em;
 }
-.hero-art-arrow {
-  font-size: 46px;
-  font-weight: 400;
-}
 .hero-hatch {
   position: absolute;
   right: -30px;
@@ -599,6 +600,7 @@ a:hover .arrow-icon {
 }
 .hero-bottom > span:first-child {
   display: flex;
+  align-items: center;
   gap: 28px;
 }
 .community-strip {
@@ -692,9 +694,6 @@ a:hover .arrow-icon {
 .team-card-top .eyebrow {
   font-size: 10px;
 }
-.team-card-top .arrow-icon {
-  width: 18px;
-}
 .team-symbol {
   font-size: 55px;
   line-height: 1.3;
@@ -743,9 +742,6 @@ a:hover .arrow-icon {
 }
 .team-card:hover {
   transform: translateY(-7px);
-}
-.team-card:hover .team-card-top .arrow-icon {
-  transform: translate(4px, -4px);
 }
 .work-section {
   background: #f8f9fb;
@@ -911,7 +907,7 @@ a:hover .arrow-icon {
   width: 26px;
   font-weight: 400;
 }
-.interest-button > span:last-child {
+.interest-selection {
   margin-left: auto;
   font-size: 23px;
   opacity: 0;
@@ -922,8 +918,7 @@ a:hover .arrow-icon {
   background: var(--navy);
   color: white;
 }
-.interest-button.selected > span:last-child,
-.interest-button:hover > span:last-child {
+.interest-button.selected .interest-selection {
   opacity: 1;
 }
 .finder-results {
@@ -1076,10 +1071,6 @@ a:hover .arrow-icon {
   align-items: center;
   gap: 20px;
 }
-.footer-wordmark > span {
-  font: 40px var(--body);
-  color: var(--turquoise);
-}
 .footer-top p {
   color: #bdc6de;
   font: 20px/1.4 var(--serif);
@@ -1198,17 +1189,6 @@ a:hover .arrow-icon {
   font-size: 16px;
   position: relative;
   z-index: 1;
-}
-.page-hero-mark {
-  position: absolute;
-  right: 6%;
-  bottom: -75px;
-  color: #141b4d06;
-  font-family: var(--body);
-  font-size: 460px;
-  line-height: 1;
-  font-weight: 400;
-  pointer-events: none;
 }
 .editorial-split {
   display: grid;
@@ -1356,8 +1336,12 @@ a:hover .arrow-icon {
   color: #494b59;
 }
 .line-list li:before {
-  content: "↗";
-  color: var(--red);
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-top: 0.6em;
+  border-radius: 50%;
+  background-color: var(--red);
   flex-shrink: 0;
 }
 .team-outcome {
@@ -2290,11 +2274,6 @@ a:hover .arrow-icon {
   .page-hero p {
     font-size: 14px;
   }
-  .page-hero-mark {
-    font-size: 280px;
-    right: -30px;
-    bottom: -60px;
-  }
   .editorial-split {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -2483,9 +2462,6 @@ a:hover .arrow-icon {
   }
   .hero-art-bottom p {
     font-size: 22px;
-  }
-  .hero-art-arrow {
-    font-size: 34px;
   }
   .hero-actions {
     gap: 10px;
