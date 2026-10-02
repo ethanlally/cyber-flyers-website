@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import { sitePath } from "../utils/paths";
 import "../styles/global.css";
 import Arrow from "../components/Arrow.astro";
@@ -31,7 +32,7 @@ const isCurrent = (path: string) =>
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:animate="none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -54,6 +55,7 @@ const isCurrent = (path: string) =>
       crossorigin
     />
     <title>{title === 'Cyber Flyers' ? 'Cyber Flyers | University of Dayton' : `${title} | Cyber Flyers`}</title>
+    <ClientRouter fallback="swap" />
   </head>
   <body>
     <a class="skip-link" href="#main">
