@@ -1,0 +1,137 @@
+/* Raw swatches are emitted from palette.ts. Components use the roles below. */
+:root {
+  --brand-primary: var(--palette-teal);
+  --brand-secondary: var(--palette-rust);
+  --accent-secondary: var(--palette-supporting-teal);
+  --accent-highlight: var(--palette-coral);
+
+  --surface-page: var(--palette-white);
+  --surface-dark: var(--palette-deep-blue);
+  --surface-soft: var(--palette-sand);
+  --surface-subtle: color-mix(
+    in srgb,
+    var(--surface-soft) 45%,
+    var(--surface-page)
+  );
+  --surface-tint: color-mix(
+    in srgb,
+    var(--brand-primary) 18%,
+    var(--surface-page)
+  );
+  --surface-accent: var(--brand-primary);
+  --surface-highlight: color-mix(
+    in srgb,
+    var(--accent-highlight) 12%,
+    var(--surface-page)
+  );
+
+  --text-primary: var(--palette-deep-blue);
+  --text-accent: var(--brand-secondary);
+  --text-body: color-mix(
+    in srgb,
+    var(--palette-deep-blue) 90%,
+    var(--palette-black)
+  );
+  --text-muted: color-mix(
+    in srgb,
+    var(--palette-deep-blue) 85%,
+    var(--palette-white)
+  );
+  --text-on-dark: var(--palette-white);
+  --text-muted-on-dark: color-mix(
+    in srgb,
+    var(--palette-white) 80%,
+    var(--surface-dark)
+  );
+  --text-on-accent: var(--palette-black);
+  /* Unmodified brand teal narrowly misses 4.5:1 on deep blue. */
+  --accent-on-dark: color-mix(
+    in srgb,
+    var(--brand-primary) 85%,
+    var(--palette-white)
+  );
+  --link-color: var(--brand-secondary);
+  --link-hover: var(--brand-secondary);
+
+  --border-subtle: color-mix(
+    in srgb,
+    var(--palette-deep-blue) 18%,
+    var(--surface-page)
+  );
+  --border-default: color-mix(
+    in srgb,
+    var(--palette-deep-blue) 30%,
+    var(--surface-page)
+  );
+  --border-control: color-mix(
+    in srgb,
+    var(--palette-deep-blue) 65%,
+    var(--surface-page)
+  );
+  --border-strong: var(--palette-deep-blue);
+  --border-on-dark: color-mix(in srgb, var(--palette-white) 25%, transparent);
+  --focus-ring: var(--brand-secondary);
+
+  --art-line: color-mix(in srgb, var(--brand-primary) 18%, transparent);
+  --art-grid: color-mix(in srgb, var(--brand-primary) 12%, transparent);
+  --art-border: color-mix(in srgb, var(--brand-primary) 35%, transparent);
+  --art-grid-on-light: color-mix(
+    in srgb,
+    var(--palette-deep-blue) 7%,
+    transparent
+  );
+  --shadow-menu: 0 8px 28px
+    color-mix(in srgb, var(--palette-deep-blue) 14%, transparent);
+  --shadow-glow: 0 0 35px
+    color-mix(in srgb, var(--brand-primary) 18%, transparent);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --radius-sm: 2px;
+  --radius-control: 3px;
+  --radius-panel: 4px;
+  --radius-round: 50%;
+  --font-body: "Work Sans", Arial, sans-serif;
+  --font-heading: "Source Serif 4", Georgia, serif;
+  --font-display: "League Gothic", "Arial Narrow", Impact, sans-serif;
+  --text-size-body: 16px;
+  --text-size-control: 14px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Local roles keep nested text, links, and focus indicators readable. */
+:is(
+  .affiliation-bar,
+  .hero-artwork,
+  .team-card.psat,
+  .media-placeholder:not(.media-signal),
+  .site-footer,
+  .section-dark
+) {
+  --text-primary: var(--text-on-dark);
+  --text-accent: var(--accent-on-dark);
+  --text-body: var(--text-muted-on-dark);
+  --text-muted: var(--text-muted-on-dark);
+  --link-color: var(--accent-on-dark);
+  --link-hover: var(--text-on-dark);
+  --focus-ring: var(--brand-primary);
+  background-color: var(--surface-dark);
+  color: var(--text-primary);
+}
+
+:is(.finder-section, .closing-cta) {
+  --text-primary: var(--text-on-accent);
+  --text-accent: var(--text-on-accent);
+  --text-body: var(--text-on-accent);
+  --text-muted: var(--text-on-accent);
+  --link-color: var(--text-on-accent);
+  --link-hover: var(--text-on-accent);
+  --border-control: var(--palette-deep-blue);
+  background-color: var(--surface-accent);
+  color: var(--text-primary);
+}

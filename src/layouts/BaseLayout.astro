@@ -1,6 +1,7 @@
 ---
 import { ClientRouter } from "astro:transitions";
 import { sitePath } from "../utils/paths";
+import { browserThemeColor, paletteStyles } from "../styles/palette";
 import "../styles/global.css";
 import Arrow from "../components/Arrow.astro";
 import Icon from "../components/Icon.astro";
@@ -37,7 +38,8 @@ const isCurrent = (path: string) =>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#141B4D" />
+    <meta name="theme-color" content={browserThemeColor} />
+    <style is:inline set:html={paletteStyles}></style>
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -104,7 +106,7 @@ const isCurrent = (path: string) =>
             ) : (
               <a
                 href={sitePath(item.href)}
-                class:list={{ "is-active": isCurrent(item.href) }}
+                class:list={["nav-link", { "is-active": isCurrent(item.href) }]}
                 aria-current={isCurrent(item.href) ? "page" : undefined}
               >
                 {item.label}
