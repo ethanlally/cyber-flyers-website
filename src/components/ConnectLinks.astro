@@ -1,0 +1,113 @@
+---
+import { connectLinks } from "../data/connect";
+import Icon from "./Icon.astro";
+
+interface Props {
+  compact?: boolean;
+}
+const { compact = false } = Astro.props;
+---
+
+<ul class:list={["connect-links", { "connect-links-compact": compact }]}>
+  {connectLinks.map((link) => (
+    <li>
+      <a href={link.href} target="_blank" rel="noopener noreferrer">
+        <Icon name={link.icon} size={24} />
+        <span class="connect-copy">
+          <span class="connect-name">
+            {compact && "compactLabel" in link ? link.compactLabel : link.name}
+          </span>
+          {!compact && (
+            <>
+              <span class="connect-detail">{link.detail}</span>
+              <span class="connect-description">{link.description}</span>
+            </>
+          )}
+          <span class="sr-only"> (opens in a new tab)</span>
+        </span>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .connect-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .connect-links li {
+    min-width: 0;
+  }
+  .connect-links a {
+    display: flex;
+    align-items: start;
+    gap: var(--space-5);
+    height: 100%;
+    padding: var(--space-6);
+    background: var(--surface-page);
+    border: 1px solid var(--border-subtle);
+  }
+  .connect-links a:hover {
+    border-color: var(--link-color);
+  }
+  .connect-links :global(.icon) {
+    color: var(--text-accent);
+    margin-top: var(--space-1);
+  }
+  .connect-copy {
+    min-width: 0;
+  }
+  .connect-name {
+    display: block;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+  .connect-links a:hover .connect-name {
+    text-decoration: underline;
+    text-underline-offset: var(--space-1);
+  }
+  .connect-detail,
+  .connect-description {
+    display: block;
+    color: var(--text-body);
+    font-size: var(--text-size-control);
+    line-height: 1.7;
+  }
+  .connect-detail {
+    margin-top: var(--space-1);
+  }
+  .connect-description {
+    margin-top: var(--space-4);
+  }
+  .connect-links-compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-5);
+  }
+  .connect-links-compact a {
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: var(--space-2) 0;
+    border: 0;
+    background: none;
+    font-size: var(--text-size-control);
+  }
+  .connect-links-compact :global(.icon) {
+    width: 18px;
+    height: 18px;
+    margin-top: 0;
+  }
+  @media (max-width: 760px) {
+    .connect-links {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .connect-links:not(.connect-links-compact) a {
+      padding: var(--space-5);
+    }
+  }
+</style>

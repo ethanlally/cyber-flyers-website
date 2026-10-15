@@ -6,6 +6,9 @@ import SectionNav from "../components/SectionNav.astro";
 import Arrow from "../components/Arrow.astro";
 import TeamFinder from "../components/TeamFinder.astro";
 import FAQ from "../components/FAQ.astro";
+import ConnectLinks from "../components/ConnectLinks.astro";
+import Icon from "../components/Icon.astro";
+import { contactEmail, contactHref, emailSignupUrl } from "../data/connect";
 ---
 
 <BaseLayout
@@ -15,19 +18,38 @@ import FAQ from "../components/FAQ.astro";
   <PageHeader
     eyebrow="STUDENTS & PARTNERS"
     title="Get involved."
-    description="Information for students interested in Cyber Flyers and organizations interested in collaborating."
+    description="Join our mailing list, explore a place on the team, or start a conversation about working together."
   />
   <SectionNav section="involvement" />
   <section class="section">
     <div class="container involvement-grid">
       <article>
-        <h2 id="students">Student participation.</h2>
+        <h2 id="students">Interested in Cyber Flyers?</h2>
         <p>
           Cyber Flyers includes students from technical and nontechnical majors.
           The teams work on communication, events, phishing simulations,
           training, and research.
         </p>
-        <p class="availability">Student joining information coming soon.</p>
+        <p>
+          Leave your email to join our mailing list and let us know if you'd
+          like to join Cyber Flyers in the future.
+        </p>
+        <a
+          class="button button-primary"
+          href={emailSignupUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-describedby="signup-note"
+        >
+          Join the mailing list
+          <Icon name="mail" size={20} />
+        </a>
+        <p class="signup-note" id="signup-note">
+          Joining the mailing list does not make you a member.
+        </p>
+        <a class="text-link" href={contactHref}>
+          Questions? Email our team
+        </a>
       </article>
       <article>
         <h2>Team responsibilities.</h2>
@@ -77,15 +99,22 @@ import FAQ from "../components/FAQ.astro";
           <h2 id="partners">Partnerships.</h2>
         </div>
       </div>
+      <div class="partnership-intro">
+        <p>
+          Have an idea for an event, project, or collaboration? Tell us what you
+          have in mind and connect with the Cyber Flyers team.
+        </p>
+        <a class="text-link contact-link" href={contactHref}>
+          <Icon name="mail" size={20} />
+          {contactEmail}
+        </a>
+      </div>
       <div class="partnership-grid">
         <article data-reveal>
           <h3>Campus organizations and departments</h3>
           <p>
             Potential collaborations include educational campaigns, campus
             events, guest speakers, and training or research projects.
-          </p>
-          <p class="availability">
-            Campus partnership contact information coming soon.
           </p>
         </article>
         <article data-reveal>
@@ -94,7 +123,6 @@ import FAQ from "../components/FAQ.astro";
             Partners can contribute professional experience through guest
             speaking, event collaboration, and research partnerships.
           </p>
-          <p class="availability">Partner contact information coming soon.</p>
         </article>
         <article data-reveal>
           <h3>Mentoring and professional opportunities</h3>
@@ -103,9 +131,6 @@ import FAQ from "../components/FAQ.astro";
             and sharing internships or project opportunities through the
             appropriate University process.
           </p>
-          <p class="availability">
-            Specific opportunities will be shared when approved.
-          </p>
         </article>
         <article data-reveal>
           <h3>Event and program support</h3>
@@ -113,14 +138,22 @@ import FAQ from "../components/FAQ.astro";
             Future sponsorship or program-support opportunities may be added
             following University and Cyber Flyers leadership approval.
           </p>
-          <p class="availability">
-            Sponsorship information is not yet available.
-          </p>
         </article>
       </div>
     </div>
   </section>
-  <section class="section section-soft">
+  <section class="section section-soft" aria-labelledby="connect">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">KEEP IN TOUCH</span>
+          <h2 id="connect">Connect with Cyber Flyers.</h2>
+        </div>
+      </div>
+      <ConnectLinks />
+    </div>
+  </section>
+  <section class="section">
     <div class="container narrow">
       <div class="section-heading">
         <div>

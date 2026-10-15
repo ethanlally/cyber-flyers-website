@@ -1,3 +1,5 @@
+import { contactEmail, contactHref } from "./connect";
+
 export const careerPaths = [
   {
     teamId: "cmac",
@@ -65,29 +67,21 @@ export const learningSteps = [
     title: "Understand the basics",
     description:
       "Learn about cybersecurity, risk, threats, vulnerabilities, and the confidentiality–integrity–availability model.",
-    href: "/resources/#learning",
-    label: "Explore foundational resources",
   },
   {
     title: "Recognize common threats",
     description:
       "Explore phishing, credential theft, malware, social engineering, and unsafe online behavior.",
-    href: "/resources/#learning",
-    label: "Find learning material",
   },
   {
     title: "Practice defensive habits",
     description:
       "Use multifactor authentication, strong passwords, software updates, backups, and appropriate reporting.",
-    href: "/resources/#learning",
-    label: "Explore cybermindfulness",
   },
   {
     title: "Keep learning",
     description:
       "Continue with Cyber Flyers articles, university learning material, and reference guides from NIST.",
-    href: "/resources/",
-    label: "Browse the resource library",
   },
 ];
 
@@ -149,10 +143,9 @@ export const commonFAQs: FAQItem[] = [
   },
   {
     question: "How do I join?",
-    answer:
-      "Student joining information will be posted here when it is available.",
+    answer: `Fill out our interest form to join the mailing list and tell us if you'd like to join Cyber Flyers in the future. The form records your interest; it does not enroll you as a member. For questions about joining, email ${contactEmail}.`,
     href: "/get-involved/#students",
-    label: "Student participation",
+    label: "Find the signup form",
   },
 ];
 
@@ -161,19 +154,23 @@ export const allFAQs: FAQItem[] = [
   {
     question: "Do I need previous cybersecurity experience?",
     answer:
-      "Start by exploring foundational resources, team descriptions, and current programs. Specific participation requirements will be shared with joining information.",
+      "Cyber Flyers includes technical and nontechnical work. Explore the teams and foundational resources, and contact us to discuss the experience needed for a role that interests you.",
     href: "/start-here/",
     label: "Start here in cybersecurity",
   },
   {
     question: "Can first-year students participate?",
     answer:
-      "First-year participation details will be posted with the joining information when available.",
+      "Contact our team to ask about current opportunities for first-year students. You can also use the interest form to join the mailing list and express interest in future participation.",
+    href: contactHref,
+    label: "Ask about participation",
   },
   {
     question: "How much time should members expect to commit?",
     answer:
-      "Meeting schedules and time commitments will be posted when confirmed.",
+      "Contact our team for the current meeting schedule and time expectations for the work you're interested in.",
+    href: contactHref,
+    label: "Ask about the schedule",
   },
   {
     question: "Which team is the best fit for my interests?",
@@ -192,8 +189,7 @@ export const allFAQs: FAQItem[] = [
   },
   {
     question: "How can an organization collaborate with Cyber Flyers?",
-    answer:
-      "Potential collaborations include guest speaking, events, educational campaigns, and training or research projects. Official contact information is coming soon.",
+    answer: `Potential collaborations include guest speaking, events, educational campaigns, and training or research projects. Email ${contactEmail} to discuss your idea.`,
     href: "/get-involved/#partners",
     label: "Partnership opportunities",
   },

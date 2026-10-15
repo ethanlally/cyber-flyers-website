@@ -81,6 +81,11 @@ a:hover .arrow-icon-diagonal {
   text-decoration: underline;
   text-underline-offset: var(--space-1);
 }
+.contact-link {
+  overflow-wrap: anywhere;
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
 .tags {
   display: flex;
   flex-wrap: wrap;

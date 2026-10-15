@@ -5,8 +5,8 @@ import Arrow from "../components/Arrow.astro";
 import Icon from "../components/Icon.astro";
 import MediaPlaceholder from "../components/MediaPlaceholder.astro";
 import TeamFinder from "../components/TeamFinder.astro";
-import ClosingCTA from "../components/ClosingCTA.astro";
 import { academicYear, members, teams, programs } from "../data/content";
+import { blogUrl } from "../data/connect";
 const teamIcons = ["message", "command", "asterisk"] as const;
 ---
 
@@ -218,7 +218,7 @@ const teamIcons = ["message", "command", "asterisk"] as const;
       </div>
       <div class="journal-grid">
         <article class="journal-card" data-reveal>
-          <a href="https://cf.therangerpost.com/">
+          <a href={blogUrl}>
             <MediaPlaceholder
               label="Cyber Flyers articles"
               variant="signal"
@@ -258,5 +258,4 @@ const teamIcons = ["message", "command", "asterisk"] as const;
       </div>
     </div>
   </section>
-  <ClosingCTA />
 </BaseLayout>

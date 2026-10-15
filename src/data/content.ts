@@ -1,3 +1,5 @@
+import { blogUrl } from "./connect";
+
 // Keep each person here once; teams refer to these records by ID.
 export const academicYear = "2026-2027";
 type Standing = "Sophomore" | "Junior" | "Senior";
@@ -264,7 +266,7 @@ export const programs = [
       "Student-written articles and research briefs",
       "Training content and potential white papers",
     ],
-    resource: "https://cf.therangerpost.com/",
+    resource: blogUrl,
     resourceLabel: "Read the Cyber Flyers blog",
   },
 ];
@@ -278,7 +280,7 @@ export const resourceGroups = [
       {
         title: "Cyber Flyers blog",
         label: "Articles · Texas Cyber Range",
-        url: "https://cf.therangerpost.com/",
+        url: blogUrl,
         description:
           "Student perspectives on cybersecurity, digital habits, and the issues affecting our community.",
       },
