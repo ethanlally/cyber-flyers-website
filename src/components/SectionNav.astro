@@ -24,20 +24,20 @@ const path = Astro.url.pathname.replace(/\/$/, "");
   .section-nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px 28px;
+    gap: var(--space-2) 28px;
     padding-block: 18px;
-    border-bottom: 1px solid var(--rule);
+    border-bottom: 1px solid var(--border-default);
   }
   a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
-    font-size: 14px;
+    font-size: var(--text-size-control);
     font-weight: 500;
   }
   a:hover,
   a[aria-current] {
-    color: var(--red);
+    color: var(--link-color);
     text-decoration: underline;
     text-underline-offset: 6px;
   }

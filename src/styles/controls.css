@@ -1,0 +1,108 @@
+.icon {
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+.arrow-icon {
+  transition: transform 0.35s var(--ease);
+}
+a:hover .arrow-icon {
+  transform: translateX(3px);
+}
+a:hover .arrow-icon-diagonal {
+  transform: translate(3px, -2px);
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  position: relative;
+  min-height: 53px;
+  padding: var(--space-4) var(--space-5);
+  line-height: 1.5;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  isolation: isolate;
+  background: none;
+  border: 0;
+  color: var(--text-on-dark);
+}
+.button:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--button-bg, var(--brand-secondary));
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 14px),
+    calc(100% - 14px) 100%,
+    0 100%
+  );
+  border-radius: var(--radius-control) var(--radius-control) 0
+    var(--radius-control);
+  transition:
+    background 0.3s,
+    transform 0.3s var(--ease);
+}
+.button:hover:before {
+  background: var(--button-hover, var(--surface-dark));
+  transform: translateY(-2px);
+}
+.button-primary {
+  --button-bg: var(--brand-secondary);
+  --button-hover: var(--surface-dark);
+}
+.button-secondary {
+  --button-bg: var(--surface-dark);
+  --button-hover: var(--brand-secondary);
+}
+.button-accent {
+  --button-bg: var(--brand-primary);
+  --button-hover: var(--surface-page);
+  color: var(--text-on-accent);
+}
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  min-height: 44px;
+  font-size: var(--text-size-control);
+  font-weight: 600;
+  line-height: 1.6;
+}
+.text-link .arrow-icon {
+  color: var(--link-color);
+}
+.text-link:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+  text-underline-offset: var(--space-1);
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: 22px;
+}
+.tags > span,
+.tags > a {
+  font-size: 10px;
+  border: 1px solid var(--border-control);
+  padding: 7px 10px;
+}
+.stack-links {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  margin-top: 20px;
+}
+.button {
+  font-size: var(--text-size-control);
+}
+.tags > a:hover {
+  background: var(--surface-dark);
+  color: var(--text-on-dark);
+}
