@@ -3,9 +3,10 @@ import { ClientRouter } from "astro:transitions";
 import { sitePath } from "../utils/paths";
 import { browserThemeColor, paletteStyles } from "../styles/palette";
 import "../styles/global.css";
-import Arrow from "../components/Arrow.astro";
 import Icon from "../components/Icon.astro";
 import NavDropdown from "../components/NavDropdown.astro";
+import ConnectLinks from "../components/ConnectLinks.astro";
+import { contactEmail, contactHref, emailSignupUrl } from "../data/connect";
 import { sectionLinks } from "../data/navigation";
 const navigation = [
   { href: "/", label: "Home" },
@@ -128,23 +129,14 @@ const isCurrent = (path: string) =>
     <footer class="site-footer">
       <div class="container">
         <div class="footer-top">
-          <div>
-            <a class="footer-wordmark" href={sitePath("/")}>
-              CYBER FLYERS
-            </a>
-            <p>
-              A stronger cyber community.
-              <br />
-              Built together.
-            </p>
-          </div>
-          <a
-            class="footer-cta"
-            href={sitePath("/get-involved/#find-your-place")}
-          >
-            Find your place.
-            <Arrow />
+          <a class="footer-wordmark" href={sitePath("/")}>
+            CYBER FLYERS
           </a>
+          <p>
+            A stronger cyber community.
+            <br />
+            Built together.
+          </p>
         </div>
         <div class="footer-columns">
           <div class="footer-about">
@@ -173,20 +165,24 @@ const isCurrent = (path: string) =>
             <a href={sitePath("/programs/#outreach")}>Campus outreach</a>
           </div>
           <div>
-            <h2>Connect</h2>
+            <h2>Get involved</h2>
+            <a href={emailSignupUrl} target="_blank" rel="noopener noreferrer">
+              Join the mailing list
+            </a>
             <a href={sitePath("/get-involved/#students")}>For students</a>
             <a href={sitePath("/get-involved/#partners")}>For partners</a>
             <a href={sitePath("/career/")}>Career connections</a>
             <a href={sitePath("/faq/")}>Frequently asked questions</a>
-            <a
-              href="https://cf.therangerpost.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              The Cyber Flyers blog <Icon name="arrow-up-right" />
-            </a>
-            <span class="footer-muted">Contact information coming soon.</span>
           </div>
+        </div>
+        <div class="footer-connect">
+          <div>
+            <h2>Stay connected</h2>
+            <a class="text-link contact-link" href={contactHref}>
+              {contactEmail}
+            </a>
+          </div>
+          <ConnectLinks compact />
         </div>
         <div class="footer-bottom">
           <span>

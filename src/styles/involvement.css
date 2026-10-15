@@ -26,6 +26,23 @@
 .involvement-grid .button {
   margin-top: 30px;
 }
+.involvement-grid .signup-note {
+  margin: var(--space-3) 0 var(--space-2);
+  max-width: 48ch;
+  font-size: var(--text-size-control);
+  color: var(--text-muted);
+}
+.partnership-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4) var(--space-6);
+  margin: calc(-1 * var(--space-4)) 0 var(--space-6);
+}
+.partnership-intro p {
+  max-width: 65ch;
+}
 @media (max-width: 1080px) {
   .involvement-grid {
     gap: 45px;

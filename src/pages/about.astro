@@ -3,6 +3,7 @@ import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import Arrow from "../components/Arrow.astro";
+import { blogUrl } from "../data/connect";
 import {
   academicYear,
   members,
@@ -150,7 +151,7 @@ const leadership = [
           share the results of student-led cybersecurity initiatives. TxCR also
           hosts the Cyber Flyers blog.
         </p>
-        <a class="button button-accent" href="https://cf.therangerpost.com/">
+        <a class="button button-accent" href={blogUrl}>
           Cyber Flyers blog <Arrow diagonal />
         </a>
       </div>

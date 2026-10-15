@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import SectionNav from "../components/SectionNav.astro";
 import FAQ from "../components/FAQ.astro";
-import ClosingCTA from "../components/ClosingCTA.astro";
 import { allFAQs } from "../data/opportunities";
 ---
 
@@ -29,10 +28,4 @@ import { allFAQs } from "../data/opportunities";
       <FAQ items={allFAQs} />
     </div>
   </section>
-  <ClosingCTA
-    title="Start with your interests."
-    text="Explore communication, training, and research with our team finder."
-    href="/get-involved/#find-your-place"
-    label="Find your place"
-  />
 </BaseLayout>
