@@ -17,7 +17,7 @@ ReadOnlyTmpfs=false
 Tmpfs=/tmp:rw,noexec,nosuid,nodev,size=16m,mode=1777
 HttpProxy=false
 PidsLimit=64
-PodmanArgs=--memory=128m --memory-swap=128m --cpus=1
+PodmanArgs=--memory=128m --memory-swap=128m
 HealthCmd=["wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
 HealthInterval=30s
 HealthTimeout=3s
