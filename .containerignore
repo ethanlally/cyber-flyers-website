@@ -1,0 +1,19 @@
+# Only send build inputs to Podman. Credentials and deployment files stay outside.
+**
+!Containerfile
+!.containerignore
+!package.json
+!package-lock.json
+!astro.config.mjs
+!tsconfig.json
+!src/
+!src/**
+!public/
+!public/**
+!deploy/
+!deploy/nginx.conf
+**/.env*
+**/*.pem
+**/*.key
+**/node_modules/
+**/.git/

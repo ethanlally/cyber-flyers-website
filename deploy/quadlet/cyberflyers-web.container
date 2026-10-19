@@ -1,0 +1,36 @@
+[Unit]
+Description=Cyber Flyers static website
+StartLimitIntervalSec=0
+
+[Container]
+# Set a reviewed commit's image in cyberflyers-web.container.d/10-image.conf.
+Image=localhost/cyberflyers-website:unconfigured
+Pull=never
+ContainerName=cyberflyers-web
+# The host's cloudflared service reaches Nginx through loopback only.
+PublishPort=127.0.0.1:8080:8080
+User=101:101
+DropCapability=all
+NoNewPrivileges=true
+ReadOnly=true
+ReadOnlyTmpfs=false
+Tmpfs=/tmp:rw,noexec,nosuid,nodev,size=16m,mode=1777
+HttpProxy=false
+PidsLimit=64
+PodmanArgs=--memory=128m --memory-swap=128m --cpus=1
+HealthCmd=["wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/healthz"]
+HealthInterval=30s
+HealthTimeout=3s
+HealthStartPeriod=5s
+HealthRetries=3
+HealthOnFailure=kill
+LogDriver=journald
+
+[Service]
+Restart=always
+RestartSec=5s
+TimeoutStartSec=90s
+TimeoutStopSec=30s
+
+[Install]
+WantedBy=default.target
