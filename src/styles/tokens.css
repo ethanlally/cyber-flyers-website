@@ -73,7 +73,6 @@
   --focus-ring: var(--brand-secondary);
 
   --art-line: color-mix(in srgb, var(--brand-primary) 18%, transparent);
-  --art-grid: color-mix(in srgb, var(--brand-primary) 12%, transparent);
   --art-border: color-mix(in srgb, var(--brand-primary) 35%, transparent);
   --art-grid-on-light: color-mix(
     in srgb,
@@ -109,7 +108,6 @@
   .affiliation-bar,
   .hero-artwork,
   .team-card.psat,
-  .media-placeholder:not(.media-signal),
   .site-footer,
   .section-dark
 ) {

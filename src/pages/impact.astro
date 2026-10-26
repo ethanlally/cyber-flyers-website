@@ -3,7 +3,13 @@ import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import Arrow from "../components/Arrow.astro";
+import Icon from "../components/Icon.astro";
 import { academicYear, members, teams } from "../data/content";
+const annualReport = {
+  year: "2025–2026",
+  fileName: "cyber-flyers-annual-report-2025-2026.pdf",
+  fileSize: "15.5 MB",
+};
 const highlights = [
   {
     title: "Campus tabling",
@@ -79,6 +85,29 @@ const highlights = [
       </div>
     </div>
   </section>
+  <section class="section">
+    <div class="container editorial-split">
+      <h2 id="reports">Annual reports.</h2>
+      <article class="report-card">
+        <span class="eyebrow">{annualReport.year}</span>
+        <h3>
+          Cyber Flyers
+          <br />
+          <em>Annual Report</em>
+        </h3>
+        <p id="annual-report-details">PDF · {annualReport.fileSize}</p>
+        <a
+          class="text-link"
+          href={sitePath(`/reports/${annualReport.fileName}`)}
+          download={annualReport.fileName}
+          aria-label={`Download ${annualReport.year} annual report`}
+          aria-describedby="annual-report-details"
+        >
+          Download annual report <Icon name="arrow-down" />
+        </a>
+      </article>
+    </div>
+  </section>
   <section class="section" id="member-success">
     <div class="container editorial-split">
       <div>
@@ -92,20 +121,6 @@ const highlights = [
           <Arrow />
         </a>
       </div>
-    </div>
-  </section>
-  <section class="section">
-    <div class="container editorial-split">
-      <h2 id="reports">Annual reports.</h2>
-      <article class="report-card">
-        <span class="eyebrow">2025–2026</span>
-        <h3>
-          Cyber Flyers
-          <br />
-          <em>Annual Report</em>
-        </h3>
-        <p class="availability">Report download coming soon.</p>
-      </article>
     </div>
   </section>
 </BaseLayout>

@@ -3,7 +3,7 @@ import { isExternalLink, sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/PageHeader.astro";
 import SectionNav from "../components/SectionNav.astro";
-import MediaPlaceholder from "../components/MediaPlaceholder.astro";
+import ContentImage from "../components/ContentImage.astro";
 import Arrow from "../components/Arrow.astro";
 import { academicYear, programs, teams } from "../data/content";
 ---
@@ -33,11 +33,7 @@ import { academicYear, programs, teams } from "../data/content";
           aria-labelledby={`${program.id}-title`}
           data-reveal
         >
-          <MediaPlaceholder
-            label={program.name}
-            number={`0${i + 1}`}
-            variant={i % 2 ? "signal" : "grid"}
-          />
+          <ContentImage photo={program.photo} />
           <div>
             <span class="eyebrow">0{i + 1} / PROGRAMS & RESEARCH</span>
             <h2 id={`${program.id}-title`}>{program.name}</h2>

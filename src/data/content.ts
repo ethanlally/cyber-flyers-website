@@ -1,4 +1,5 @@
 import { blogUrl } from "./connect";
+import { photos } from "./photos";
 
 // Keep each person here once; teams refer to these records by ID.
 export const academicYear = "2026-2027";
@@ -207,6 +208,7 @@ export const teams = [
 export const programs = [
   {
     id: "cyber-training",
+    photo: photos.training,
     name: "Cybersecurity training",
     teamIds: ["cmac", "ctmr"],
     summary:
@@ -223,6 +225,7 @@ export const programs = [
   },
   {
     id: "phishing",
+    photo: photos.collaboration,
     name: "Phishing and cybermindfulness",
     teamIds: ["psat"],
     summary:
@@ -239,6 +242,7 @@ export const programs = [
   },
   {
     id: "outreach",
+    photo: photos.outreach,
     name: "Campus outreach",
     teamIds: ["cmac", "psat", "ctmr"],
     summary:
@@ -255,6 +259,7 @@ export const programs = [
   },
   {
     id: "research",
+    photo: photos.research,
     name: "Threat research",
     teamIds: ["ctmr"],
     summary:

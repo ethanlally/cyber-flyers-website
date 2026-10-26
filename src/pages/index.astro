@@ -3,10 +3,11 @@ import { sitePath } from "../utils/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Arrow from "../components/Arrow.astro";
 import Icon from "../components/Icon.astro";
-import MediaPlaceholder from "../components/MediaPlaceholder.astro";
+import ContentImage from "../components/ContentImage.astro";
 import TeamFinder from "../components/TeamFinder.astro";
 import { academicYear, members, teams, programs } from "../data/content";
 import { blogUrl } from "../data/connect";
+import { photos } from "../data/photos";
 const teamIcons = ["message", "command", "asterisk"] as const;
 ---
 
@@ -219,11 +220,7 @@ const teamIcons = ["message", "command", "asterisk"] as const;
       <div class="journal-grid">
         <article class="journal-card" data-reveal>
           <a href={blogUrl}>
-            <MediaPlaceholder
-              label="Cyber Flyers articles"
-              variant="signal"
-              number="01"
-            />
+            <ContentImage photo={photos.blog} />
             <div class="journal-meta">
               STUDENT WRITING <span>TEXAS CYBER RANGE</span>
             </div>
@@ -238,11 +235,7 @@ const teamIcons = ["message", "command", "asterisk"] as const;
         </article>
         <article class="journal-card" data-reveal>
           <a href={sitePath("/impact/#highlights")}>
-            <MediaPlaceholder
-              label="Our work on campus"
-              variant="grid"
-              number="02"
-            />
+            <ContentImage photo={photos.highlights} />
             <div class="journal-meta">
               IMPACT & REPORTS <span>2025–2026</span>
             </div>
