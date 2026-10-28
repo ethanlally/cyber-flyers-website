@@ -101,10 +101,10 @@
   font-size: 12px;
   margin-top: 13px;
 }
-.journal-card .placeholder-art {
+.journal-card .content-image img {
   transition: transform 0.7s var(--ease);
 }
-.journal-card a:hover .placeholder-art {
+.journal-card a:hover .content-image img {
   transform: scale(1.07);
 }
 .team-card:nth-child(2) {
@@ -176,7 +176,7 @@
   .journal-grid {
     gap: 40px;
   }
-  .journal-card .media-placeholder {
+  .journal-card .content-image {
     min-height: 230px;
     aspect-ratio: 1.5;
   }

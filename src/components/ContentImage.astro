@@ -1,0 +1,24 @@
+---
+import { Image } from "astro:assets";
+import type { SitePhoto } from "../data/photos";
+
+interface Props {
+  photo: SitePhoto;
+}
+
+const { photo } = Astro.props;
+---
+
+<div class="content-image" style={`--photo-position: ${photo.position}`}>
+  <Image
+    src={photo.src}
+    alt={photo.alt}
+    width={800}
+    widths={[400, 800, 1200, 1600]}
+    sizes="(max-width: 360px) calc(100vw - 36px), (max-width: 760px) calc(100vw - 48px), (max-width: 1296px) 50vw, 600px"
+    format="webp"
+    quality={80}
+    loading="lazy"
+    decoding="async"
+  />
+</div>

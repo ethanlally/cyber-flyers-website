@@ -42,10 +42,10 @@
 .program-detail:last-child {
   margin-bottom: 0;
 }
-.program-detail:nth-child(even) > .media-placeholder {
+.program-detail:nth-child(even) > .content-image {
   order: 2;
 }
-.program-detail .media-placeholder {
+.program-detail .content-image {
   min-height: 370px;
   aspect-ratio: 1.25;
 }
@@ -91,10 +91,10 @@
     gap: 28px;
     margin-bottom: 60px;
   }
-  .program-detail:nth-child(even) > .media-placeholder {
+  .program-detail:nth-child(even) > .content-image {
     order: 0;
   }
-  .program-detail .media-placeholder {
+  .program-detail .content-image {
     min-height: 240px;
     aspect-ratio: 1.4;
   }
